@@ -1,5 +1,5 @@
 [build]
-  command = "node python-install.js"
+  command = "echo 'Using pre-built static site from public directory'"
   publish = "public"
   node_version = "18.16.0"
 
