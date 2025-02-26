@@ -1,176 +1,175 @@
-import * as React from "react"
-
-const pageStyles = {
-  color: "#232129",
-  padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-const headingAccentStyles = {
-  color: "#663399",
-}
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-const listStyles = {
-  marginBottom: 96,
-  paddingLeft: 0,
-}
-const listItemStyles = {
-  fontWeight: 300,
-  fontSize: 24,
-  maxWidth: 560,
-  marginBottom: 30,
-}
-
-const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
-  fontSize: 16,
-  verticalAlign: "5%",
-}
-
-const docLinkStyle = {
-  ...linkStyle,
-  listStyleType: "none",
-  marginBottom: 24,
-}
-
-const descriptionStyle = {
-  color: "#232129",
-  fontSize: 14,
-  marginTop: 10,
-  marginBottom: 0,
-  lineHeight: 1.25,
-}
-
-const docLink = {
-  text: "Documentation",
-  url: "https://www.gatsbyjs.com/docs/",
-  color: "#8954A8",
-}
-
-const badgeStyle = {
-  color: "#fff",
-  backgroundColor: "#088413",
-  border: "1px solid #088413",
-  fontSize: 11,
-  fontWeight: "bold",
-  letterSpacing: 1,
-  borderRadius: 4,
-  padding: "4px 6px",
-  display: "inline-block",
-  position: "relative",
-  top: -2,
-  marginLeft: 10,
-  lineHeight: 1,
-}
-
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial/",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-    color: "#E95800",
-  },
-  {
-    text: "How to Guides",
-    url: "https://www.gatsbyjs.com/docs/how-to/",
-    description:
-      "Practical step-by-step guides to help you achieve a specific goal. Most useful when you're trying to get something done.",
-    color: "#1099A8",
-  },
-  {
-    text: "Reference Guides",
-    url: "https://www.gatsbyjs.com/docs/reference/",
-    description:
-      "Nitty-gritty technical descriptions of how Gatsby works. Most useful when you need detailed information about Gatsby's APIs.",
-    color: "#BC027F",
-  },
-  {
-    text: "Conceptual Guides",
-    url: "https://www.gatsbyjs.com/docs/conceptual/",
-    description:
-      "Big-picture explanations of higher-level Gatsby concepts. Most useful for building understanding of a particular topic.",
-    color: "#0D96F2",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-    color: "#8EB814",
-  },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    badge: true,
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
-    color: "#663399",
-  },
-]
+import React from "react"
+import Layout from "../components/layout/Layout"
+import Hero from "../components/ui/Hero"
+import Section from "../components/ui/Section"
+import Card from "../components/ui/Card"
+import Button from "../components/ui/Button"
 
 const IndexPage = () => {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>
-        Congratulations
-        <br />
-        <span style={headingAccentStyles}>— you just made a Gatsby site! 🎉🎉🎉</span>
-      </h1>
-      <p style={paragraphStyles}>
-        Edit <code style={codeStyles}>src/pages/index.js</code> to see this page
-        update in real-time. 😎
-      </p>
-      <ul style={listStyles}>
-        <li style={docLinkStyle}>
-          <a
-            style={linkStyle}
-            href={`${docLink.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
-          >
-            {docLink.text}
-          </a>
-        </li>
-        {links.map(link => (
-          <li key={link.url} style={{ ...listItemStyles, color: link.color }}>
-            <span>
-              <a
-                style={linkStyle}
-                href={`${link.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
-              >
-                {link.text}
-              </a>
-              {link.badge && (
-                <span style={badgeStyle} aria-label="New Badge">
-                  NEW!
-                </span>
-              )}
-              <p style={descriptionStyle}>{link.description}</p>
-            </span>
-          </li>
-        ))}
-      </ul>
-      <img
-        alt="Gatsby G Logo"
-        src="data:image/svg+xml,%3Csvg width='24' height='24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2a10 10 0 110 20 10 10 0 010-20zm0 2c-3.73 0-6.86 2.55-7.75 6L14 19.75c3.45-.89 6-4.02 6-7.75h-5.25v1.5h3.45a6.37 6.37 0 01-3.89 4.44L6.06 9.69C7 7.31 9.3 5.63 12 5.63c2.13 0 4 1.04 5.18 2.65l1.23-1.06A7.959 7.959 0 0012 4zm-8 8a8 8 0 008 8c.04 0 .09 0-8-8z' fill='%23639'/%3E%3C/svg%3E"
+    <Layout 
+      title="Home"
+      description="Dr. Fatih Nayebi is an AI researcher, enterprise AI leader, and Faculty Lecturer at McGill University"
+    >
+      {/* Hero Section */}
+      <Hero
+        title="Dr. Fatih Nayebi"
+        subtitle="AI Researcher & Enterprise AI Leader"
+        description="Transforming the future of business and technology through cutting-edge artificial intelligence research and leadership. Faculty Lecturer at McGill University."
+        primaryButtonText="View Research"
+        primaryButtonLink="/research"
+        secondaryButtonText="Contact Me"
+        secondaryButtonLink="/contact"
+        image="/placeholder-profile.jpg"
+        imageAlt="Dr. Fatih Nayebi Portrait"
       />
-    </main>
+
+      {/* Introduction Section */}
+      <Section background="white">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Bridging Academic Research & Enterprise AI</h2>
+          <p className="text-lg text-gray-700 mb-8">
+            With expertise in machine learning, natural language processing, and AI leadership, I help organizations 
+            leverage artificial intelligence to solve complex business challenges while advancing the field through 
+            academic research and teaching.
+          </p>
+          <div className="flex justify-center gap-4">
+            <Button to="/about" variant="primary">
+              About Me
+            </Button>
+            <Button to="/publications" variant="secondary">
+              View Publications
+            </Button>
+          </div>
+        </div>
+      </Section>
+
+      {/* Areas of Expertise Section */}
+      <Section background="sage">
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Areas of Expertise</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <Card
+            title="Enterprise AI Leadership"
+            content="Leading data science and AI teams to deliver impactful solutions across retail, finance, and technology sectors. Current VP of Data & AI at ALDO Group."
+            image="/placeholder-enterprise.jpg"
+            imageAlt="Enterprise AI Leadership"
+          />
+          <Card
+            title="AI Research"
+            content="Conducting research in machine learning, natural language processing, and computer vision with applications in business and industry."
+            image="/placeholder-research.jpg"
+            imageAlt="AI Research"
+            link="/research"
+            linkText="View Research"
+          />
+          <Card
+            title="Academic Teaching"
+            content="Faculty Lecturer at McGill University, teaching graduate courses in artificial intelligence, machine learning, and data science."
+            image="/placeholder-teaching.jpg"
+            imageAlt="Academic Teaching"
+            link="/publications"
+            linkText="View Courses"
+          />
+        </div>
+      </Section>
+
+      {/* Featured Case Studies Section */}
+      <Section>
+        <div className="flex flex-col md:flex-row justify-between items-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold">Featured Case Studies</h2>
+          <Button to="/research" variant="secondary" className="mt-4 md:mt-0">
+            View All Case Studies
+          </Button>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Card
+            title="AI-Driven Retail Transformation"
+            subtitle="ALDO Group"
+            content="Leading the development of advanced analytics and AI solutions to optimize inventory management, personalize customer experiences, and drive revenue growth."
+            image="/placeholder-case1.jpg"
+            imageAlt="Retail AI Case Study"
+            link="/research/retail-ai"
+            linkText="Read Case Study"
+          />
+          <Card
+            title="Natural Language Processing for Customer Service"
+            subtitle="Research Project"
+            content="Developing state-of-the-art NLP models to enhance customer service automation, sentiment analysis, and intelligent routing."
+            image="/placeholder-case2.jpg"
+            imageAlt="NLP Case Study"
+            link="/research/nlp-customer-service"
+            linkText="Read Case Study"
+          />
+        </div>
+      </Section>
+
+      {/* Latest Blog Posts Section */}
+      <Section background="gray">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold">Latest Blog Posts</h2>
+          <Button 
+            href="https://gradientdivergence.com" 
+            variant="secondary" 
+            className="mt-4 md:mt-0"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit Gradient Divergence
+          </Button>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <Card
+            title="The Future of Enterprise AI"
+            subtitle="Published on Gradient Divergence • January 15, 2023"
+            content="Exploring how large enterprises are implementing and scaling AI solutions across their organizations."
+            image="/placeholder-blog1.jpg"
+            imageAlt="Blog Post 1"
+            href="https://gradientdivergence.com/future-enterprise-ai"
+            linkText="Read Article"
+          />
+          <Card
+            title="Responsible AI: Ethics in Machine Learning"
+            subtitle="Published on Gradient Divergence • December 5, 2022"
+            content="Examining the ethical considerations and frameworks for responsible AI deployment in business."
+            image="/placeholder-blog2.jpg"
+            imageAlt="Blog Post 2"
+            href="https://gradientdivergence.com/responsible-ai-ethics"
+            linkText="Read Article"
+          />
+          <Card
+            title="Natural Language Processing at Scale"
+            subtitle="Published on Gradient Divergence • November 10, 2022"
+            content="Technical deep dive into implementing NLP solutions that can scale to meet enterprise demands."
+            image="/placeholder-blog3.jpg"
+            imageAlt="Blog Post 3"
+            href="https://gradientdivergence.com/nlp-at-scale"
+            linkText="Read Article"
+          />
+        </div>
+      </Section>
+
+      {/* CTA Section */}
+      <Section background="white">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Let's Connect</h2>
+          <p className="text-lg text-gray-700 mb-8">
+            Interested in consulting, speaking engagements, or collaboration on AI research? 
+            I'm always open to discussing new opportunities and challenges in the AI space.
+          </p>
+          <div className="flex justify-center gap-4">
+            <Button to="/consulting" variant="primary">
+              Consulting & Speaking
+            </Button>
+            <Button to="/contact" variant="secondary">
+              Contact Me
+            </Button>
+          </div>
+        </div>
+      </Section>
+    </Layout>
   )
 }
 
 export default IndexPage
 
-export const Head = () => <title>Home Page</title>
+export const Head = () => <title>Home | Dr. Fatih Nayebi</title>
