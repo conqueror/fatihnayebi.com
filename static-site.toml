@@ -1,4 +1,8 @@
 [build]
   command = "npm install --legacy-peer-deps --force && npm run build"
   publish = "public"
-  node_version = "18.16.0" 
+  node_version = "18.16.0"
+
+[build.environment]
+  NPM_FLAGS = "--legacy-peer-deps --force"
+  NODE_OPTIONS = "--max-old-space-size=4096" 
