@@ -10,7 +10,7 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "npx -y serve public/",
-    "build": "gatsby build",
+    "build": "node build.js",
     "serve": "npx -y serve public/",
     "clean": "gatsby clean",
     "preinstall": "npx npm-force-resolutions"
@@ -41,7 +41,13 @@
   "resolutions": {
     "ajv": "8.12.0",
     "ajv-keywords": "5.1.0",
-    "webpack": "5.76.0"
+    "webpack": "5.76.0",
+    "lmdb": "2.7.9"
+  },
+  "overrides": {
+    "lmdb": {
+      "node-gyp": "9.0.0"
+    }
   },
   "main": "gatsby-config.js",
   "repository": {

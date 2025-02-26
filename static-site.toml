@@ -1,8 +1,13 @@
 [build]
-  command = "npm install --legacy-peer-deps --force && npm run build"
+  command = "echo 'Using pre-built static site'"
   publish = "public"
   node_version = "18.16.0"
 
 [build.environment]
-  NPM_FLAGS = "--legacy-peer-deps --force"
-  NODE_OPTIONS = "--max-old-space-size=4096" 
+  NPM_FLAGS = "--legacy-peer-deps --force --no-optional --ignore-scripts"
+  NODE_OPTIONS = "--max-old-space-size=4096"
+  NPM_CONFIG_IGNORE_SCRIPTS = "true"
+  NPM_CONFIG_NODE_GYP = "false"
+  GATSBY_TELEMETRY_DISABLED = "1"
+  GATSBY_EXPERIMENTAL_LMDB_STORE = "0"
+  GATSBY_CACHE_BACKEND = "fs" 

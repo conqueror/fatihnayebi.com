@@ -5,6 +5,14 @@ module.exports = {
     siteUrl: `https://fatihnayebi.com`,
     author: `Dr. Fatih Nayebi`,
   },
+  flags: {
+    PARALLEL_QUERY_RUNNING: true,
+    PRESERVE_FILE_DOWNLOAD_CACHE: true,
+    FAST_DEV: true,
+    DEV_SSR: false,
+    PRESERVE_WEBPACK_CACHE: true,
+    FUNCTIONS: true
+  },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
