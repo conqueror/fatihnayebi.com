@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Dr. Fatih Nayebi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage-50: #f8faf8;
+      --sage-100: #f1f5f1;
+      --sage-200: #e3eae4;
+      --sage-300: #c9d6cc;
+      --sage-400: #a6baa9;
+      --sage-500: #87a18b;
+      --sage-600: #687f6c;
+      --sage-700: #546558;
+      --sage-800: #445248;
+      --sage-900: #3a453d;
+      --sage-950: #1f2620;
+      
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --gray-950: #030712;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Source Sans Pro', 'Lato', sans-serif;
+      color: var(--gray-700);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .container-custom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    @media (min-width: 640px) {
+      .container-custom {
+        padding: 0 1.5rem;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .container-custom {
+        padding: 0 2rem;
+      }
+    }
+    
+    /* Header styles */
+    header {
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      text-decoration: none;
+    }
+    
+    .nav {
+      display: none;
+    }
+    
+    @media (min-width: 768px) {
+      .nav {
+        display: flex;
+        gap: 2rem;
+      }
+    }
+    
+    .nav-link {
+      color: var(--gray-700);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .nav-link:hover {
+      color: var(--sage-600);
+    }
+    
+    .nav-link.active {
+      color: var(--sage-600);
+      font-weight: 600;
+    }
+    
+    .mobile-menu-btn {
+      display: block;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    @media (min-width: 768px) {
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+    
+    /* Main content styles */
+    main {
+      flex: 1;
+    }
+    
+    .section {
+      padding: 3rem 0;
+    }
+    
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero {
+      background: linear-gradient(to right, var(--sage-50), var(--gray-50));
+      padding: 4rem 0;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+    }
+    
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--gray-900);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--sage-600);
+      margin-bottom: 1.5rem;
+    }
+    
+    .text-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Blog post styles */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    
+    @media (min-width: 768px) {
+      .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .blog-post {
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background-color: white;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .blog-post:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .blog-post-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    
+    .blog-post-content {
+      padding: 1.5rem;
+    }
+    
+    .blog-post-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.5rem;
+    }
+    
+    .blog-post-meta {
+      font-size: 0.875rem;
+      color: var(--sage-600);
+      margin-bottom: 1rem;
+    }
+    
+    .blog-post-excerpt {
+      margin-bottom: 1.5rem;
+    }
+    
+    .blog-post-link {
+      color: var(--sage-600);
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: color 0.3s;
+    }
+    
+    .blog-post-link:hover {
+      color: var(--sage-800);
+    }
+    
+    /* Footer styles */
+    footer {
+      background-color: var(--gray-900);
+      color: white;
+      padding: 2rem 0;
+    }
+    
+    .footer-content {
+      text-align: center;
+      color: var(--gray-400);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container-custom">
+      <div class="header-content">
+        <a href="../index.html" class="logo">Dr. Fatih Nayebi</a>
+        <nav class="nav">
+          <a href="../index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="research.html" class="nav-link">Research & Case Studies</a>
+          <a href="blog.html" class="nav-link active">Blog</a>
+          <a href="publications.html" class="nav-link">Publications & Teaching</a>
+          <a href="consulting.html" class="nav-link">Consulting</a>
+          <a href="news.html" class="nav-link">News & Media</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <button class="mobile-menu-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <section class="hero">
+      <div class="container-custom">
+        <div class="hero-content">
+          <h1 class="hero-title">Blog</h1>
+          <p class="hero-subtitle">Thoughts, insights, and discussions on AI and its applications in business</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section">
+      <div class="container-custom">
+        <div class="text-content">
+          <p>
+            Welcome to my blog where I share insights on artificial intelligence, machine learning, and their applications in business. As both an academic researcher and industry leader, I bridge theoretical advances with practical implementation challenges.
+          </p>
+          
+          <p>
+            For more frequent updates, you can also visit my technical blog <a href="https://gradientdivergence.com" target="_blank" rel="noopener noreferrer">Gradient Divergence</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section" style="background-color: var(--gray-50);">
+      <div class="container-custom">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Recent Articles</h2>
+        
+        <div class="blog-grid">
+          <article class="blog-post">
+            <img src="https://via.placeholder.com/800x450?text=Enterprise+AI" alt="Enterprise AI" class="blog-post-img">
+            <div class="blog-post-content">
+              <h3 class="blog-post-title">The Future of Enterprise AI</h3>
+              <div class="blog-post-meta">Published on January 15, 2023 • 8 min read</div>
+              <p class="blog-post-excerpt">
+                Exploring how large enterprises are implementing and scaling AI solutions across their organizations. This article examines the challenges and opportunities in integrating AI into established business processes.
+              </p>
+              <a href="#" class="blog-post-link">Read Article →</a>
+            </div>
+          </article>
+          
+          <article class="blog-post">
+            <img src="https://via.placeholder.com/800x450?text=Responsible+AI" alt="Responsible AI" class="blog-post-img">
+            <div class="blog-post-content">
+              <h3 class="blog-post-title">Responsible AI: Ethics in Machine Learning</h3>
+              <div class="blog-post-meta">Published on December 5, 2022 • 12 min read</div>
+              <p class="blog-post-excerpt">
+                Examining the ethical considerations and frameworks for responsible AI deployment in business. As AI systems become more prevalent, understanding their ethical implications becomes increasingly important.
+              </p>
+              <a href="#" class="blog-post-link">Read Article →</a>
+            </div>
+          </article>
+          
+          <article class="blog-post">
+            <img src="https://via.placeholder.com/800x450?text=NLP+at+Scale" alt="NLP at Scale" class="blog-post-img">
+            <div class="blog-post-content">
+              <h3 class="blog-post-title">Natural Language Processing at Scale</h3>
+              <div class="blog-post-meta">Published on November 10, 2022 • 15 min read</div>
+              <p class="blog-post-excerpt">
+                Technical deep dive into implementing NLP solutions that can scale to meet enterprise demands. From architecture decisions to deployment strategies, this article covers practical considerations for NLP at scale.
+              </p>
+              <a href="#" class="blog-post-link">Read Article →</a>
+            </div>
+          </article>
+          
+          <article class="blog-post">
+            <img src="https://via.placeholder.com/800x450?text=Computer+Vision" alt="Computer Vision in Retail" class="blog-post-img">
+            <div class="blog-post-content">
+              <h3 class="blog-post-title">Computer Vision Applications in Retail</h3>
+              <div class="blog-post-meta">Published on October 22, 2022 • 10 min read</div>
+              <p class="blog-post-excerpt">
+                Analyzing how computer vision technologies are transforming the retail industry through inventory management, customer experience enhancement, and operational optimization.
+              </p>
+              <a href="#" class="blog-post-link">Read Article →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <div class="container-custom">
+      <div class="footer-content">
+        <p>© 2025 Dr. Fatih Nayebi. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html> 

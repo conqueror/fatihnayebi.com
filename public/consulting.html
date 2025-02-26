@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulting | Dr. Fatih Nayebi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage-50: #f8faf8;
+      --sage-100: #f1f5f1;
+      --sage-200: #e3eae4;
+      --sage-300: #c9d6cc;
+      --sage-400: #a6baa9;
+      --sage-500: #87a18b;
+      --sage-600: #687f6c;
+      --sage-700: #546558;
+      --sage-800: #445248;
+      --sage-900: #3a453d;
+      --sage-950: #1f2620;
+      
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --gray-950: #030712;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Source Sans Pro', 'Lato', sans-serif;
+      color: var(--gray-700);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .container-custom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    @media (min-width: 640px) {
+      .container-custom {
+        padding: 0 1.5rem;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .container-custom {
+        padding: 0 2rem;
+      }
+    }
+    
+    /* Header styles */
+    header {
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      text-decoration: none;
+    }
+    
+    .nav {
+      display: none;
+    }
+    
+    @media (min-width: 768px) {
+      .nav {
+        display: flex;
+        gap: 2rem;
+      }
+    }
+    
+    .nav-link {
+      color: var(--gray-700);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .nav-link:hover {
+      color: var(--sage-600);
+    }
+    
+    .nav-link.active {
+      color: var(--sage-600);
+      font-weight: 600;
+    }
+    
+    .mobile-menu-btn {
+      display: block;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    @media (min-width: 768px) {
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+    
+    /* Main content styles */
+    main {
+      flex: 1;
+    }
+    
+    .section {
+      padding: 3rem 0;
+    }
+    
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero {
+      background: linear-gradient(to right, var(--sage-50), var(--gray-50));
+      padding: 4rem 0;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+    }
+    
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--gray-900);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--sage-600);
+      margin-bottom: 1.5rem;
+    }
+    
+    .text-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Service styles */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    @media (min-width: 768px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .service-card {
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .service-icon {
+      height: 60px;
+      width: 60px;
+      background-color: var(--sage-100);
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .service-content {
+      padding: 2rem;
+    }
+    
+    .service-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 1rem;
+    }
+    
+    .service-description {
+      margin-bottom: 1.5rem;
+    }
+    
+    .service-list {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .service-list li {
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Testimonial styles */
+    .testimonial {
+      background-color: var(--sage-50);
+      border-radius: 0.5rem;
+      padding: 2rem;
+      margin-top: 3rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+    
+    .testimonial-content {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .testimonial-content::before {
+      content: '"';
+      font-size: 4rem;
+      color: var(--sage-200);
+      position: absolute;
+      top: -2rem;
+      left: -1rem;
+      z-index: -1;
+      font-family: serif;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+    
+    .testimonial-avatar {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 9999px;
+      object-fit: cover;
+      margin-right: 1rem;
+    }
+    
+    .testimonial-name {
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+    
+    .testimonial-position {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+    }
+    
+    /* CTA styles */
+    .cta {
+      text-align: center;
+      padding: 4rem 0;
+      background-color: var(--sage-50);
+    }
+    
+    .cta-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--gray-900);
+      margin-bottom: 1rem;
+    }
+    
+    .cta-description {
+      font-size: 1.25rem;
+      color: var(--gray-600);
+      margin-bottom: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background-color: var(--sage-600);
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.375rem;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    
+    .cta-button:hover {
+      background-color: var(--sage-700);
+    }
+    
+    /* Footer styles */
+    footer {
+      background-color: var(--gray-900);
+      color: white;
+      padding: 2rem 0;
+    }
+    
+    .footer-content {
+      text-align: center;
+      color: var(--gray-400);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container-custom">
+      <div class="header-content">
+        <a href="../index.html" class="logo">Dr. Fatih Nayebi</a>
+        <nav class="nav">
+          <a href="../index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="research.html" class="nav-link">Research & Case Studies</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="publications.html" class="nav-link">Publications & Teaching</a>
+          <a href="consulting.html" class="nav-link active">Consulting</a>
+          <a href="news.html" class="nav-link">News & Media</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <button class="mobile-menu-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <section class="hero">
+      <div class="container-custom">
+        <div class="hero-content">
+          <h1 class="hero-title">AI Consulting Services</h1>
+          <p class="hero-subtitle">Strategic guidance and technical expertise for organizations implementing AI solutions</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section">
+      <div class="container-custom">
+        <div class="text-content">
+          <h2 class="section-title">How I Can Help</h2>
+          <p>
+            With over 15 years of experience in artificial intelligence and machine learning, I provide specialized consulting services to help organizations leverage AI technologies effectively. My approach combines academic rigor with practical industry insights to deliver solutions that create tangible business value.
+          </p>
+          
+          <p>
+            Whether you're looking to develop an AI strategy, implement specific AI solutions, or address challenges in your existing AI initiatives, I offer customized consulting services tailored to your organizational needs.
+          </p>
+          
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-content">
+                <div class="service-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                </div>
+                <h3 class="service-title">AI Strategy Development</h3>
+                <p class="service-description">
+                  Develop a comprehensive AI strategy aligned with your business objectives and organizational capabilities.
+                </p>
+                <ul class="service-list">
+                  <li>AI opportunity assessment</li>
+                  <li>Technology roadmapping</li>
+                  <li>Organizational readiness evaluation</li>
+                  <li>Implementation planning</li>
+                  <li>ROI modeling and business case development</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="service-card">
+              <div class="service-content">
+                <div class="service-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                  </svg>
+                </div>
+                <h3 class="service-title">Technical Implementation</h3>
+                <p class="service-description">
+                  Expert guidance on building and deploying AI and machine learning solutions across your organization.
+                </p>
+                <ul class="service-list">
+                  <li>Architecture design</li>
+                  <li>Model selection and development</li>
+                  <li>Integration with existing systems</li>
+                  <li>Scaling and optimization</li>
+                  <li>Technical due diligence</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="service-card">
+              <div class="service-content">
+                <div class="service-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                  </svg>
+                </div>
+                <h3 class="service-title">AI Governance & Ethics</h3>
+                <p class="service-description">
+                  Establish frameworks for responsible AI deployment, ensuring ethical considerations and regulatory compliance.
+                </p>
+                <ul class="service-list">
+                  <li>Ethics policy development</li>
+                  <li>Bias detection and mitigation</li>
+                  <li>Compliance assessment</li>
+                  <li>Transparency and explainability</li>
+                  <li>Risk management frameworks</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="service-card">
+              <div class="service-content">
+                <div class="service-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+                <h3 class="service-title">Team & Capability Building</h3>
+                <p class="service-description">
+                  Develop your organization's AI capabilities through customized training and knowledge transfer.
+                </p>
+                <ul class="service-list">
+                  <li>Skills gap analysis</li>
+                  <li>Executive education</li>
+                  <li>Technical team mentoring</li>
+                  <li>Recruitment strategy</li>
+                  <li>Organizational structure design</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial">
+            <div class="testimonial-content">
+              <p>
+                Dr. Nayebi's guidance was invaluable as we navigated the integration of AI into our product ecosystem. His strategic insights helped us prioritize the right initiatives and avoid common pitfalls, ultimately accelerating our AI transformation by at least 12 months.
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <img src="https://via.placeholder.com/96" alt="Sarah Johnson" class="testimonial-avatar">
+              <div>
+                <div class="testimonial-name">Sarah Johnson</div>
+                <div class="testimonial-position">CTO, Enterprise Solutions Inc.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="cta">
+      <div class="container-custom">
+        <h2 class="cta-title">Ready to transform your organization with AI?</h2>
+        <p class="cta-description">
+          Let's discuss how I can help you navigate the complex landscape of artificial intelligence and develop solutions tailored to your specific business challenges.
+        </p>
+        <a href="/contact" class="cta-button">Schedule a Consultation</a>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <div class="container-custom">
+      <div class="footer-content">
+        <p>© 2025 Dr. Fatih Nayebi. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html> 

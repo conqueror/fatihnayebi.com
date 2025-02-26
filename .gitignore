@@ -1,5 +1,5 @@
 node_modules/
 .cache/
-public
+# public -- removed to allow committing the static HTML site
 .env
 .idea

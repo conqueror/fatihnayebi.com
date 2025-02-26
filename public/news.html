@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News & Media | Dr. Fatih Nayebi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage-50: #f8faf8;
+      --sage-100: #f1f5f1;
+      --sage-200: #e3eae4;
+      --sage-300: #c9d6cc;
+      --sage-400: #a6baa9;
+      --sage-500: #87a18b;
+      --sage-600: #687f6c;
+      --sage-700: #546558;
+      --sage-800: #445248;
+      --sage-900: #3a453d;
+      --sage-950: #1f2620;
+      
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --gray-950: #030712;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Source Sans Pro', 'Lato', sans-serif;
+      color: var(--gray-700);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .container-custom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    @media (min-width: 640px) {
+      .container-custom {
+        padding: 0 1.5rem;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .container-custom {
+        padding: 0 2rem;
+      }
+    }
+    
+    /* Header styles */
+    header {
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      text-decoration: none;
+    }
+    
+    .nav {
+      display: none;
+    }
+    
+    @media (min-width: 768px) {
+      .nav {
+        display: flex;
+        gap: 2rem;
+      }
+    }
+    
+    .nav-link {
+      color: var(--gray-700);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .nav-link:hover {
+      color: var(--sage-600);
+    }
+    
+    .nav-link.active {
+      color: var(--sage-600);
+      font-weight: 600;
+    }
+    
+    .mobile-menu-btn {
+      display: block;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    @media (min-width: 768px) {
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+    
+    /* Main content styles */
+    main {
+      flex: 1;
+    }
+    
+    .section {
+      padding: 3rem 0;
+    }
+    
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero {
+      background: linear-gradient(to right, var(--sage-50), var(--gray-50));
+      padding: 4rem 0;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+    }
+    
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--gray-900);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--sage-600);
+      margin-bottom: 1.5rem;
+    }
+    
+    .text-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+    }
+    
+    /* News items */
+    .news-item {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    
+    .news-item:last-child {
+      border-bottom: none;
+    }
+    
+    .news-date {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      margin-bottom: 0.5rem;
+    }
+    
+    .news-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--gray-800);
+    }
+    
+    .news-source {
+      font-size: 0.875rem;
+      color: var(--sage-600);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+    
+    .news-description {
+      margin-bottom: 1rem;
+    }
+    
+    .news-link {
+      display: inline-block;
+      color: var(--sage-600);
+      font-weight: 500;
+      text-decoration: none;
+    }
+    
+    .news-link:hover {
+      color: var(--sage-700);
+      text-decoration: underline;
+    }
+    
+    /* Media appearances */
+    .media-item {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    
+    @media (min-width: 768px) {
+      .media-item {
+        flex-direction: row;
+      }
+    }
+    
+    .media-image {
+      flex-shrink: 0;
+      width: 100%;
+      height: 200px;
+      background-color: var(--gray-100);
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+    
+    @media (min-width: 768px) {
+      .media-image {
+        width: 280px;
+      }
+    }
+    
+    .media-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-400);
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .media-content {
+      flex: 1;
+    }
+    
+    /* Footer styles */
+    footer {
+      background-color: var(--gray-900);
+      color: white;
+      padding: 2rem 0;
+    }
+    
+    .footer-content {
+      text-align: center;
+      color: var(--gray-400);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container-custom">
+      <div class="header-content">
+        <a href="home.html" class="logo">Dr. Fatih Nayebi</a>
+        <nav class="nav">
+          <a href="home.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="research.html" class="nav-link">Research & Case Studies</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="publications.html" class="nav-link">Publications & Teaching</a>
+          <a href="consulting.html" class="nav-link">Consulting</a>
+          <a href="news.html" class="nav-link active">News & Media</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <button class="mobile-menu-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <section class="hero">
+      <div class="container-custom">
+        <div class="hero-content">
+          <h1 class="hero-title">News & Media</h1>
+          <p class="hero-subtitle">Press coverage, interviews, and media appearances</p>
+          <p>
+            Stay updated on my latest contributions to AI discourse through news features, interviews, podcast appearances, and speaking engagements.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section">
+      <div class="container-custom">
+        <div class="text-content">
+          <h2 class="section-title">Recent News</h2>
+          
+          <div class="news-item">
+            <p class="news-date">March 15, 2025</p>
+            <h3 class="news-title">AI Ethics Framework Adopted by Leading Retailers</h3>
+            <span class="news-source">Retail Technology Today</span>
+            <p class="news-description">
+              Dr. Fatih Nayebi's proposed framework for responsible AI implementation in retail settings has been adopted by several leading North American retailers. The framework, which emphasizes transparency, fairness, and customer privacy, was highlighted at the International Retail Innovation Conference.
+            </p>
+            <a href="#" class="news-link">Read the full article →</a>
+          </div>
+          
+          <div class="news-item">
+            <p class="news-date">February 8, 2025</p>
+            <h3 class="news-title">McGill University Expands AI Program with New Courses</h3>
+            <span class="news-source">Montreal Technology Journal</span>
+            <p class="news-description">
+              McGill University announced the expansion of its AI curriculum with three new specialized courses, including "AI for Business Transformation" taught by Dr. Fatih Nayebi. The program aims to prepare the next generation of AI leaders with practical skills for enterprise implementation.
+            </p>
+            <a href="#" class="news-link">Read the full article →</a>
+          </div>
+          
+          <div class="news-item">
+            <p class="news-date">December 10, 2024</p>
+            <h3 class="news-title">ALDO Group Reports 35% Efficiency Gain with New AI Implementation</h3>
+            <span class="news-source">Business Innovation Quarterly</span>
+            <p class="news-description">
+              Under the leadership of Dr. Fatih Nayebi, VP of Data & AI, ALDO Group has reported significant operational efficiency improvements through strategic AI implementation across its supply chain and inventory management systems.
+            </p>
+            <a href="#" class="news-link">Read the full article →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section" style="background-color: var(--gray-50);">
+      <div class="container-custom">
+        <div class="text-content">
+          <h2 class="section-title">Media Appearances</h2>
+          
+          <div class="media-item">
+            <div class="media-image">
+              <div class="media-placeholder">AI Summit Interview</div>
+            </div>
+            <div class="media-content">
+              <p class="news-date">April 20, 2025</p>
+              <h3 class="news-title">The Future of Retail AI: Interview at Global AI Summit</h3>
+              <p class="news-description">
+                In-depth interview discussing the transformation of retail through artificial intelligence, the challenges of implementation, and predictions for the next decade of innovation.
+              </p>
+              <a href="#" class="news-link">Watch the interview →</a>
+            </div>
+          </div>
+          
+          <div class="media-item">
+            <div class="media-image">
+              <div class="media-placeholder">Podcast Appearance</div>
+            </div>
+            <div class="media-content">
+              <p class="news-date">March 5, 2025</p>
+              <h3 class="news-title">The AI in Business Podcast: Bridging Research and Implementation</h3>
+              <p class="news-description">
+                Guest appearance discussing how businesses can effectively translate cutting-edge AI research into practical applications that drive meaningful business outcomes.
+              </p>
+              <a href="#" class="news-link">Listen to the episode →</a>
+            </div>
+          </div>
+          
+          <div class="media-item">
+            <div class="media-image">
+              <div class="media-placeholder">Conference Keynote</div>
+            </div>
+            <div class="media-content">
+              <p class="news-date">January 17, 2025</p>
+              <h3 class="news-title">Keynote Address: Montreal AI Symposium</h3>
+              <p class="news-description">
+                Keynote presentation on "Responsible AI Implementation: From Theory to Practice" at the annual Montreal AI Symposium, addressing over 2,000 industry professionals and researchers.
+              </p>
+              <a href="#" class="news-link">View presentation →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <div class="container-custom">
+      <div class="footer-content">
+        <p>© 2025 Dr. Fatih Nayebi. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html> 

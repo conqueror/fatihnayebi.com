@@ -1,0 +1,6 @@
+{
+  "routing": {
+    "single_page_app": true,
+    "error_page": "/404.html"
+  }
+} 

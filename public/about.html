@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Dr. Fatih Nayebi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage-50: #f8faf8;
+      --sage-100: #f1f5f1;
+      --sage-200: #e3eae4;
+      --sage-300: #c9d6cc;
+      --sage-400: #a6baa9;
+      --sage-500: #87a18b;
+      --sage-600: #687f6c;
+      --sage-700: #546558;
+      --sage-800: #445248;
+      --sage-900: #3a453d;
+      --sage-950: #1f2620;
+      
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --gray-950: #030712;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Source Sans Pro', 'Lato', sans-serif;
+      color: var(--gray-700);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .container-custom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    @media (min-width: 640px) {
+      .container-custom {
+        padding: 0 1.5rem;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .container-custom {
+        padding: 0 2rem;
+      }
+    }
+    
+    /* Header styles */
+    header {
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      text-decoration: none;
+    }
+    
+    .nav {
+      display: none;
+    }
+    
+    @media (min-width: 768px) {
+      .nav {
+        display: flex;
+        gap: 2rem;
+      }
+    }
+    
+    .nav-link {
+      color: var(--gray-700);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .nav-link:hover {
+      color: var(--sage-600);
+    }
+    
+    .nav-link.active {
+      color: var(--sage-600);
+      font-weight: 600;
+    }
+    
+    .mobile-menu-btn {
+      display: block;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    @media (min-width: 768px) {
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+    
+    /* Main content styles */
+    main {
+      flex: 1;
+    }
+    
+    .section {
+      padding: 3rem 0;
+    }
+    
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero {
+      background: linear-gradient(to right, var(--sage-50), var(--gray-50));
+      padding: 4rem 0;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+    }
+    
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--gray-900);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--sage-600);
+      margin-bottom: 1.5rem;
+    }
+    
+    .text-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-img {
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 2rem;
+    }
+    
+    /* Footer styles */
+    footer {
+      background-color: var(--gray-900);
+      color: white;
+      padding: 2rem 0;
+    }
+    
+    .footer-content {
+      text-align: center;
+      color: var(--gray-400);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container-custom">
+      <div class="header-content">
+        <a href="../index.html" class="logo">Dr. Fatih Nayebi</a>
+        <nav class="nav">
+          <a href="../index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link active">About</a>
+          <a href="research.html" class="nav-link">Research & Case Studies</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="publications.html" class="nav-link">Publications & Teaching</a>
+          <a href="consulting.html" class="nav-link">Consulting</a>
+          <a href="news.html" class="nav-link">News & Media</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <button class="mobile-menu-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <section class="hero">
+      <div class="container-custom">
+        <div class="hero-content">
+          <h1 class="hero-title">About Me</h1>
+          <p class="hero-subtitle">AI Researcher, Enterprise AI Leader, Faculty Lecturer</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section">
+      <div class="container-custom">
+        <div class="text-content">
+          <img src="https://via.placeholder.com/800x400?text=Dr.+Fatih+Nayebi" alt="Dr. Fatih Nayebi" class="profile-img">
+          
+          <h2 class="section-title">Background</h2>
+          <p>
+            Dr. Fatih Nayebi is an accomplished AI researcher and enterprise AI leader with extensive experience in bridging academic research with real-world business applications. Currently serving as the VP of Data & AI at ALDO Group, he leads teams in developing cutting-edge AI solutions that drive business value.
+          </p>
+          
+          <p>
+            With a Ph.D. in Computer Science specializing in Machine Learning and Natural Language Processing, Dr. Nayebi has contributed significantly to the field through his research, publications, and teaching at prestigious institutions.
+          </p>
+          
+          <h2 class="section-title">Professional Experience</h2>
+          <p>
+            <strong>VP of Data & AI, ALDO Group</strong><br>
+            Leading data science and AI initiatives across the organization, focusing on developing solutions for inventory optimization, customer experience enhancement, and operational efficiency.
+          </p>
+          
+          <p>
+            <strong>Faculty Lecturer, McGill University</strong><br>
+            Teaching graduate-level courses in artificial intelligence, machine learning, and data science, supervising student research projects, and contributing to curriculum development.
+          </p>
+          
+          <h2 class="section-title">Education</h2>
+          <p>
+            <strong>Ph.D. in Computer Science</strong> - Specialization in Machine Learning and Natural Language Processing<br>
+            <strong>Master's in Computer Science</strong> - Focus on Artificial Intelligence<br>
+            <strong>Bachelor's in Computer Engineering</strong>
+          </p>
+          
+          <h2 class="section-title">Research Interests</h2>
+          <p>
+            Dr. Nayebi's research interests include machine learning, natural language processing, computer vision, and their applications in business and industry. His work focuses on developing practical AI solutions that can be implemented at scale to solve complex business problems.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <div class="container-custom">
+      <div class="footer-content">
+        <p>© 2025 Dr. Fatih Nayebi. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html> 

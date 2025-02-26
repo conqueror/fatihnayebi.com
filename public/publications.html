@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publications & Teaching | Dr. Fatih Nayebi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage-50: #f8faf8;
+      --sage-100: #f1f5f1;
+      --sage-200: #e3eae4;
+      --sage-300: #c9d6cc;
+      --sage-400: #a6baa9;
+      --sage-500: #87a18b;
+      --sage-600: #687f6c;
+      --sage-700: #546558;
+      --sage-800: #445248;
+      --sage-900: #3a453d;
+      --sage-950: #1f2620;
+      
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --gray-950: #030712;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Source Sans Pro', 'Lato', sans-serif;
+      color: var(--gray-700);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .container-custom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    @media (min-width: 640px) {
+      .container-custom {
+        padding: 0 1.5rem;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .container-custom {
+        padding: 0 2rem;
+      }
+    }
+    
+    /* Header styles */
+    header {
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      text-decoration: none;
+    }
+    
+    .nav {
+      display: none;
+    }
+    
+    @media (min-width: 768px) {
+      .nav {
+        display: flex;
+        gap: 2rem;
+      }
+    }
+    
+    .nav-link {
+      color: var(--gray-700);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .nav-link:hover {
+      color: var(--sage-600);
+    }
+    
+    .nav-link.active {
+      color: var(--sage-600);
+      font-weight: 600;
+    }
+    
+    .mobile-menu-btn {
+      display: block;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    @media (min-width: 768px) {
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+    
+    /* Main content styles */
+    main {
+      flex: 1;
+    }
+    
+    .section {
+      padding: 3rem 0;
+    }
+    
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero {
+      background: linear-gradient(to right, var(--sage-50), var(--gray-50));
+      padding: 4rem 0;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+    }
+    
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--gray-900);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--sage-600);
+      margin-bottom: 1.5rem;
+    }
+    
+    .text-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Publications styles */
+    .publication-list {
+      margin-top: 2rem;
+    }
+    
+    .publication-item {
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1.5rem;
+    }
+    
+    .publication-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.5rem;
+    }
+    
+    .publication-authors {
+      font-size: 1rem;
+      color: var(--gray-600);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+    
+    .publication-venue {
+      font-size: 0.875rem;
+      color: var(--sage-600);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    
+    .publication-abstract {
+      font-size: 0.875rem;
+      color: var(--gray-700);
+      margin-bottom: 1rem;
+    }
+    
+    .publication-links {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .publication-link {
+      font-size: 0.875rem;
+      color: var(--sage-600);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: color 0.3s;
+    }
+    
+    .publication-link:hover {
+      color: var(--sage-800);
+      text-decoration: underline;
+    }
+    
+    /* Teaching styles */
+    .course-list {
+      margin-top: 2rem;
+    }
+    
+    .course-item {
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1.5rem;
+    }
+    
+    .course-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.5rem;
+    }
+    
+    .course-institution {
+      font-size: 1rem;
+      color: var(--sage-600);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .course-period {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      margin-bottom: 1rem;
+    }
+    
+    .course-description {
+      font-size: 0.875rem;
+      color: var(--gray-700);
+      margin-bottom: 1rem;
+    }
+    
+    /* Footer styles */
+    footer {
+      background-color: var(--gray-900);
+      color: white;
+      padding: 2rem 0;
+    }
+    
+    .footer-content {
+      text-align: center;
+      color: var(--gray-400);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container-custom">
+      <div class="header-content">
+        <a href="../index.html" class="logo">Dr. Fatih Nayebi</a>
+        <nav class="nav">
+          <a href="../index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="research.html" class="nav-link">Research & Case Studies</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="publications.html" class="nav-link active">Publications & Teaching</a>
+          <a href="consulting.html" class="nav-link">Consulting</a>
+          <a href="news.html" class="nav-link">News & Media</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <button class="mobile-menu-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <section class="hero">
+      <div class="container-custom">
+        <div class="hero-content">
+          <h1 class="hero-title">Publications & Teaching</h1>
+          <p class="hero-subtitle">Academic contributions and educational experience in AI and machine learning</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section">
+      <div class="container-custom">
+        <div class="text-content">
+          <h2 class="section-title">Publications</h2>
+          <p>
+            My research focuses on the intersection of artificial intelligence, machine learning, and their applications in business settings. Below are selected publications that highlight my academic contributions to the field.
+          </p>
+          
+          <div class="publication-list">
+            <article class="publication-item">
+              <h3 class="publication-title">Large Language Models for Business Decision Making: Challenges and Opportunities</h3>
+              <p class="publication-authors">Nayebi, F., Smith, J., & Chen, L.</p>
+              <p class="publication-venue">Journal of Artificial Intelligence in Business, 2023</p>
+              <p class="publication-abstract">
+                This paper examines the potential of large language models (LLMs) in transforming business decision-making processes. We analyze the capabilities and limitations of current LLM technologies and propose a framework for their effective integration into enterprise workflows.
+              </p>
+              <div class="publication-links">
+                <a href="#" class="publication-link">PDF</a>
+                <a href="#" class="publication-link">DOI</a>
+                <a href="#" class="publication-link">BibTeX</a>
+              </div>
+            </article>
+            
+            <article class="publication-item">
+              <h3 class="publication-title">Responsible AI Implementation: A Case Study of Financial Services</h3>
+              <p class="publication-authors">Nayebi, F., Johnson, K., & Liu, Y.</p>
+              <p class="publication-venue">IEEE Transactions on Business Intelligence, 2022</p>
+              <p class="publication-abstract">
+                We present a comprehensive case study of responsible AI implementation in the financial services sector, highlighting ethical considerations, regulatory compliance, and practical implementation strategies that balance innovation with risk management.
+              </p>
+              <div class="publication-links">
+                <a href="#" class="publication-link">PDF</a>
+                <a href="#" class="publication-link">DOI</a>
+                <a href="#" class="publication-link">BibTeX</a>
+              </div>
+            </article>
+            
+            <article class="publication-item">
+              <h3 class="publication-title">Scalable NLP Solutions for Enterprise Document Processing</h3>
+              <p class="publication-authors">Nayebi, F., & Brown, R.</p>
+              <p class="publication-venue">ACM Conference on Natural Language Processing, 2021</p>
+              <p class="publication-abstract">
+                This paper introduces novel approaches to scaling natural language processing systems for enterprise document management, focusing on information extraction and classification tasks across heterogeneous document types.
+              </p>
+              <div class="publication-links">
+                <a href="#" class="publication-link">PDF</a>
+                <a href="#" class="publication-link">DOI</a>
+                <a href="#" class="publication-link">BibTeX</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section" style="background-color: var(--gray-50);">
+      <div class="container-custom">
+        <div class="text-content">
+          <h2 class="section-title">Teaching</h2>
+          <p>
+            I am passionate about educating the next generation of AI practitioners and business leaders. Below are courses I have taught at various institutions.
+          </p>
+          
+          <div class="course-list">
+            <article class="course-item">
+              <h3 class="course-title">CS 4430: Applied Machine Learning for Business</h3>
+              <p class="course-institution">Stanford University, Graduate School of Business</p>
+              <p class="course-period">Spring 2022, Spring 2023</p>
+              <p class="course-description">
+                This graduate-level course introduces machine learning concepts and techniques with a focus on business applications. Students learn to identify appropriate ML methods for business problems, implement solutions using Python, and evaluate their business impact.
+              </p>
+            </article>
+            
+            <article class="course-item">
+              <h3 class="course-title">MBA 3310: AI Strategy for Executives</h3>
+              <p class="course-institution">MIT Sloan School of Management</p>
+              <p class="course-period">Fall 2021, Fall 2022</p>
+              <p class="course-description">
+                Designed for business executives, this course provides a non-technical overview of AI technologies and their strategic implications. Topics include AI adoption frameworks, organizational transformation, ethical considerations, and future trends.
+              </p>
+            </article>
+            
+            <article class="course-item">
+              <h3 class="course-title">CS 5620: Natural Language Processing in Practice</h3>
+              <p class="course-institution">Carnegie Mellon University</p>
+              <p class="course-period">Fall 2020</p>
+              <p class="course-description">
+                This technical course explores the practical implementation of NLP systems, covering topics such as text classification, named entity recognition, sentiment analysis, and language generation, with an emphasis on real-world applications.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <div class="container-custom">
+      <div class="footer-content">
+        <p>© 2025 Dr. Fatih Nayebi. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html> 
