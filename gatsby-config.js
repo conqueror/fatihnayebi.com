@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Dr. Fatih Nayebi`,
-    description: `AI Researcher, Enterprise AI Leader, Faculty Lecturer`,
+    description: `AI Leader, Founder & CEO of OODARIS AI, and Assistant Professor at McGill University`,
     siteUrl: `https://fatihnayebi.com`,
     author: `Dr. Fatih Nayebi`,
   },

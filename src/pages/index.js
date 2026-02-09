@@ -9,13 +9,13 @@ const IndexPage = () => {
   return (
     <Layout 
       title="Home"
-      description="Dr. Fatih Nayebi is an AI researcher, enterprise AI leader, and Faculty Lecturer at McGill University"
+      description="Dr. Fatih Nayebi is a Data & AI leader, Founder & CEO of OODARIS AI, VP of Data & AI at ALDO Group, and Assistant Professor at McGill University"
     >
       {/* Hero Section */}
       <Hero
         title="Dr. Fatih Nayebi"
-        subtitle="AI Researcher & Enterprise AI Leader"
-        description="Transforming the future of business and technology through cutting-edge artificial intelligence research and leadership. Faculty Lecturer at McGill University."
+        subtitle="Data & AI Leader"
+        description="Transforming the future of business and technology through practical enterprise AI leadership. Founder & CEO of OODARIS AI, VP of Data & AI at ALDO Group, and Assistant Professor at McGill University."
         primaryButtonText="View Research"
         primaryButtonLink="/research"
         secondaryButtonText="Contact Me"
@@ -64,7 +64,7 @@ const IndexPage = () => {
           />
           <Card
             title="Academic Teaching"
-            content="Faculty Lecturer at McGill University, teaching graduate courses in artificial intelligence, machine learning, and data science."
+            content="Assistant Professor at McGill University, teaching graduate courses in artificial intelligence, machine learning, and data science."
             image="/images/teaching-placeholder.jpg"
             imageAlt="Academic Teaching"
             link="/publications"

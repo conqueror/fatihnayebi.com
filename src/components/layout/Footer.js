@@ -12,11 +12,11 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-white mb-4">Dr. Fatih Nayebi</h3>
             <p className="text-gray-300">
-              AI Researcher, Enterprise AI Leader, Faculty Lecturer at McGill University
+              Data & AI Leader, Founder & CEO of OODARIS AI, and Assistant Professor at McGill University
             </p>
             <div className="flex space-x-4 mt-6">
               <a 
-                href="https://linkedin.com" 
+                href="https://ca.linkedin.com/in/thefatih" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white transition-colors"
@@ -27,7 +27,7 @@ const Footer = () => {
                 </svg>
               </a>
               <a 
-                href="https://github.com" 
+                href="https://github.com/conqueror" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white transition-colors"
