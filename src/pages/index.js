@@ -119,30 +119,30 @@ const IndexPage = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card
-            title="The Future of Enterprise AI"
-            subtitle="Published on Gradient Divergence • January 15, 2023"
-            content="Exploring how large enterprises are implementing and scaling AI solutions across their organizations."
+            title="Optimizing Applications, Websites, and Services for Discoverability and Usability by AI Agents"
+            subtitle="Published on LinkedIn • February 11, 2025"
+            content="A practical framework for making digital products discoverable and usable by AI agents in the agentic era."
             image="/images/blog1-placeholder.jpg"
-            imageAlt="Blog Post 1"
-            href="https://gradientdivergence.com/future-enterprise-ai"
+            imageAlt="AI discoverability"
+            href="https://www.linkedin.com/pulse/optimizing-applications-websites-services-usability-ai-nayebi-ph-d--ks13e"
             linkText="Read Article"
           />
           <Card
-            title="Responsible AI: Ethics in Machine Learning"
-            subtitle="Published on Gradient Divergence • December 5, 2022"
-            content="Examining the ethical considerations and frameworks for responsible AI deployment in business."
+            title="Assortment Planning and Optimization with AI"
+            subtitle="Published on LinkedIn • November 6, 2024"
+            content="An applied playbook for demand forecasting, cannibalization-aware optimization, and scalable assortment decisions."
             image="/images/blog2-placeholder.jpg"
-            imageAlt="Blog Post 2"
-            href="https://gradientdivergence.com/responsible-ai-ethics"
+            imageAlt="Assortment planning and optimization"
+            href="https://www.linkedin.com/pulse/assortment-planning-optimization-ai-fatih-nayebi-ph-d--jeyoc"
             linkText="Read Article"
           />
           <Card
-            title="Natural Language Processing at Scale"
-            subtitle="Published on Gradient Divergence • November 10, 2022"
-            content="Technical deep dive into implementing NLP solutions that can scale to meet enterprise demands."
+            title="Decision Making in the Digital Age: Navigating Complexity with Data and AI"
+            subtitle="Published on LinkedIn • June 5, 2024"
+            content="A decision-intelligence perspective on using data and AI to navigate uncertainty and improve enterprise outcomes."
             image="/images/blog3-placeholder.jpg"
-            imageAlt="Blog Post 3"
-            href="https://gradientdivergence.com/nlp-at-scale"
+            imageAlt="Decision intelligence"
+            href="https://www.linkedin.com/pulse/decision-making-digital-age-navigating-complexity-ai-nayebi-ph-d--ustae"
             linkText="Read Article"
           />
         </div>
