@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Decision Frameworks for Agentic Systems: Optimization, Causality, and RL | Dr. Fatih Nayebi</title>
+  <meta name="description" content="A lot of agentic AI systems fail for a non-obvious reason:" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage-50: #f8faf8;
+      --sage-100: #f1f5f1;
+      --sage-200: #e3eae4;
+      --sage-300: #c9d6cc;
+      --sage-400: #a6baa9;
+      --sage-500: #87a18b;
+      --sage-600: #687f6c;
+      --sage-700: #546558;
+      --sage-800: #445248;
+      --sage-900: #3a453d;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Sans Pro', 'Lato', sans-serif;
+      color: var(--gray-700);
+      line-height: 1.65;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 68px;
+      gap: 1rem;
+    }
+
+    .logo {
+      color: var(--gray-900);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.15rem;
+    }
+
+    nav { display: none; gap: 1.2rem; }
+    nav a {
+      color: var(--gray-700);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .95rem;
+    }
+    nav a.active, nav a:hover { color: var(--sage-700); }
+
+    @media (min-width: 900px) { nav { display: flex; } }
+
+    main { flex: 1; }
+
+    .hero {
+      background: linear-gradient(130deg, var(--sage-50), #ffffff 60%);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 2.5rem 0;
+    }
+
+    .hero h1 {
+      color: var(--gray-900);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: .75rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--sage-700);
+      max-width: 760px;
+    }
+
+    .content-wrap { padding: 2.2rem 0 3rem; }
+
+    .posts-grid {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    }
+
+    .post-card {
+      border: 1px solid var(--gray-200);
+      border-radius: 14px;
+      background: #fff;
+      padding: 1.15rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+      box-shadow: 0 8px 22px rgba(31, 41, 55, 0.05);
+    }
+
+    .post-date {
+      color: var(--sage-700);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    .post-card h2 {
+      color: var(--gray-900);
+      font-size: 1.25rem;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .post-card p { margin: 0; }
+
+    .post-link {
+      display: inline-block;
+      margin-top: .35rem;
+      color: var(--sage-800);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .post-link:hover { text-decoration: underline; }
+
+    .article {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: 14px;
+      padding: 1.3rem 1.2rem;
+      box-shadow: 0 8px 22px rgba(31, 41, 55, 0.05);
+    }
+
+    @media (min-width: 900px) {
+      .article { padding: 1.8rem 2rem; }
+    }
+
+    .article-meta {
+      color: var(--sage-700);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .article h2 {
+      color: var(--gray-900);
+      margin: 1.35rem 0 .7rem;
+      font-size: 1.45rem;
+      line-height: 1.3;
+    }
+
+    .article h3 {
+      color: var(--gray-900);
+      margin: 1.15rem 0 .6rem;
+      font-size: 1.15rem;
+      line-height: 1.3;
+    }
+
+    .article p { margin: .75rem 0; }
+
+    .article ul, .article ol {
+      margin: .6rem 0 .8rem 1.1rem;
+      display: grid;
+      gap: .35rem;
+    }
+
+    .article blockquote {
+      border-left: 4px solid var(--sage-300);
+      background: var(--sage-50);
+      padding: .65rem .8rem;
+      margin: .9rem 0;
+      border-radius: 8px;
+    }
+
+    .article pre {
+      background: var(--gray-900);
+      color: #f3f4f6;
+      padding: .75rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: .8rem 0;
+      font-size: .9rem;
+    }
+
+    .article a { color: var(--sage-800); }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--sage-800);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    footer {
+      margin-top: auto;
+      background: var(--gray-900);
+      color: var(--gray-300);
+      padding: 1.6rem 0;
+      text-align: center;
+      font-size: .95rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--sage-100);
+      color: var(--sage-800);
+      border: 1px solid var(--sage-200);
+      border-radius: 999px;
+      padding: .22rem .58rem;
+      font-size: .78rem;
+      font-weight: 700;
+      margin-bottom: .6rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <a class="logo" href="/index.html">Dr. Fatih Nayebi</a>
+      <nav>
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/research.html">Research</a>
+        <a href="/blog.html" class="">Blog</a>
+        <a href="/publications.html">Publications</a>
+        <a href="/consulting.html">Consulting</a>
+        <a href="/news.html">News</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+  <section class="hero">
+    <div class="container">
+      <h1>Decision Frameworks for Agentic Systems: Optimization, Causality, and RL</h1>
+      <p>A lot of agentic AI systems fail for a non-obvious reason:</p>
+    </div>
+  </section>
+
+  <section class="content-wrap">
+    <div class="container">
+      <article class="article">
+        <div class="article-meta">October 13, 2025 · Book-derived post</div>
+        <p>A lot of agentic AI systems fail for a non-obvious reason:</p>
+<p>They use one decision method for every problem.</p>
+<p>That is like using a hammer for surgery, carpentry, and electrical work because it looked great in one demo.</p>
+<p>Production-grade agentic systems need a <strong>decision architecture</strong>, not a single decision algorithm. In practice, the highest-leverage stack combines three families of methods:</p>
+<ul>
+<li><strong>Optimization</strong> for constrained planning,</li>
+<li><strong>Causal inference</strong> for intervention effects,</li>
+<li><strong>Reinforcement learning</strong> for sequential adaptation.</li>
+</ul>
+<p>The hard part is not knowing these methods exist. The hard part is choosing the right one for each decision class.</p>
+<h2>The core mapping: decision class → method</h2>
+<h3>1) Optimization: “What is the best plan under constraints?”</h3>
+<p>Use optimization when you must allocate scarce resources under hard constraints.</p>
+<p>Typical examples:</p>
+<ul>
+<li>inventory allocation,</li>
+<li>replenishment and transfer planning,</li>
+<li>price/promo calendars under margin targets,</li>
+<li>workforce scheduling and capacity balancing.</li>
+</ul>
+<p>Optimization is strongest when the objective and constraints are explicit.</p>
+<p>It is weakest when you do not trust your structural assumptions.</p>
+<h3>2) Causality: “What will happen if we intervene?”</h3>
+<p>Use causal methods when historical correlations are not enough and you need intervention impact estimates.</p>
+<p>Typical examples:</p>
+<ul>
+<li>effect of promotion depth on net margin (not just sales lift),</li>
+<li>effect of changing delivery SLA on churn,</li>
+<li>effect of policy changes on operational stability.</li>
+</ul>
+<p>Causality is strongest when confounding risk is real and policy choices matter.</p>
+<p>It is weakest when data support for identification is poor and assumptions are ignored.</p>
+<h3>3) Reinforcement learning: “How should we act over time under uncertainty?”</h3>
+<p>Use RL when decisions are sequential and today’s action changes tomorrow’s state.</p>
+<p>Typical examples:</p>
+<ul>
+<li>dynamic pricing with inventory and competitor response,</li>
+<li>multi-step recommendation or engagement policies,</li>
+<li>adaptive control loops where delayed reward matters.</li>
+</ul>
+<p>RL is strongest when state transitions and long-term reward trade-offs are central.</p>
+<p>It is weakest when reward design is sloppy or simulation/off-policy validation is weak.</p>
+<h2>Why LLM reasoning alone is not enough</h2>
+<p>LLMs are excellent at synthesis, decomposition, and proposing candidate actions.</p>
+<p>But for high-stakes operational decisions, you usually need mathematically grounded engines behind those proposals.</p>
+<p>A practical agentic decision stack often looks like this:</p>
+<ol>
+<li>LLM-driven planner frames the decision and constraints.</li>
+<li>Specialized engine (optimization / causal / RL) computes candidate policies.</li>
+<li>Policy and governance layer validates action rights and risk boundaries.</li>
+<li>Execution layer applies selected action.</li>
+<li>Outcome layer measures effect and feeds learning loops.</li>
+</ol>
+<p>The LLM is the orchestrator and interface layer.</p>
+<p>The decision engines are the industrial machinery.</p>
+<h2>A simple triage rubric for teams</h2>
+<p>When deciding which framework to use, ask three questions:</p>
+<ol>
+<li><strong>Is the decision dominated by explicit constraints?</strong></li>
+</ol>
+<ul>
+<li>Yes → start with optimization.</li>
+</ul>
+<ol>
+<li><strong>Is the decision about intervention effect under confounding?</strong></li>
+</ol>
+<ul>
+<li>Yes → add causal inference.</li>
+</ul>
+<ol>
+<li><strong>Is long-horizon adaptation central?</strong></li>
+</ol>
+<ul>
+<li>Yes → add RL (carefully, with simulation/off-policy checks).</li>
+</ul>
+<p>If all three are true, you need a hybrid architecture.</p>
+<h2>Common failure modes</h2>
+<h3>Failure mode 1: forcing generative reasoning into constrained planning</h3>
+<p>If the problem is fundamentally constrained optimization, pure text reasoning will eventually violate constraints in edge conditions.</p>
+<h3>Failure mode 2: optimizing the wrong objective</h3>
+<p>Teams often maximize short-term proxy metrics and call it a success while damaging long-term outcomes.</p>
+<h3>Failure mode 3: treating correlation as policy truth</h3>
+<p>Without causal checks, “best historical performer” often encodes selection bias.</p>
+<h3>Failure mode 4: deploying RL without reliable environment assumptions</h3>
+<p>RL without robust validation becomes a high-variance bet with real business exposure.</p>
+<h2>A practical implementation sequence</h2>
+<h3>Step 1: Create a decision inventory</h3>
+<p>List top 10 recurring decisions in your workflow and classify each by:</p>
+<ul>
+<li>constraint intensity,</li>
+<li>confounding risk,</li>
+<li>sequential dependency.</li>
+</ul>
+<h3>Step 2: Assign primary framework per decision class</h3>
+<p>Do not debate endlessly. Make an explicit initial mapping and iterate with evidence.</p>
+<h3>Step 3: Build one end-to-end pilot with full instrumentation</h3>
+<p>For one high-value workflow, wire:</p>
+<ul>
+<li>planner,</li>
+<li>decision engine,</li>
+<li>governance checks,</li>
+<li>execution,</li>
+<li>outcome evaluation.</li>
+</ul>
+<h3>Step 4: Calibrate with business KPIs, not model-only metrics</h3>
+<p>Track decision quality via business outcomes:</p>
+<ul>
+<li>margin impact,</li>
+<li>stockout/overstock balance,</li>
+<li>intervention rate,</li>
+<li>policy-violation rate,</li>
+<li>stability under drift.</li>
+</ul>
+<h3>Step 5: Expand by decision families</h3>
+<p>Scale only after demonstrating reliable lift and controlled risk in one family.</p>
+<h2>What to do this week</h2>
+<ol>
+<li>Pick one decision workflow your team repeats daily.</li>
+<li>Classify it with the triage rubric (constraints / confounding / sequentiality).</li>
+<li>Choose one primary framework and one fallback strategy.</li>
+<li>Define the KPI you care about and one guardrail KPI.</li>
+<li>Run a mini postmortem on a recent bad decision and identify where framework mismatch occurred.</li>
+</ol>
+<p>If you do this honestly, you will likely discover that part of your current architecture is over-generalized.</p>
+<p>That is good news. It means you now know where to improve first.</p>
+<h2>Final thought</h2>
+<p>The future of agentic AI is not “one model to rule them all.”</p>
+<p>It is <strong>decision architecture</strong>: matching the right method to the right decision class and integrating it into an auditable, governable operating loop.</p>
+<p>Better models help.</p>
+<p>Better decision framework design compounds.</p>
+<p>---</p>
+<h3>Optional CTA variants</h3>
+<ul>
+<li>Which decision class in your stack is currently overfitted to one method?</li>
+<li>Are you seeing bigger errors from objective mismatch, causal blind spots, or sequential instability?</li>
+<li>If you are designing hybrid decision stacks for enterprise workflows, I’m happy to compare notes.</li>
+</ul>
+        <a class="back-link" href="/blog.html">← Back to blog</a>
+      </article>
+    </div>
+  </section>
+</main>
+
+  <footer>
+    <div class="container">© 2026 Dr. Fatih Nayebi. All rights reserved.</div>
+  </footer>
+</body>
+</html>

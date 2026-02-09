@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog | Dr. Fatih Nayebi</title>
-  <meta name="description" content="Practical writing on agentic AI systems, decision intelligence, and enterprise implementation patterns." />
+  <title>From Pilot to Production: AgentOps for Enterprise Teams | Dr. Fatih Nayebi</title>
+  <meta name="description" content="Most agentic AI projects fail for a simple reason: teams optimize for intelligence, not operations." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -252,7 +252,7 @@
         <a href="/index.html">Home</a>
         <a href="/about.html">About</a>
         <a href="/research.html">Research</a>
-        <a href="/blog.html" class="active">Blog</a>
+        <a href="/blog.html" class="">Blog</a>
         <a href="/publications.html">Publications</a>
         <a href="/consulting.html">Consulting</a>
         <a href="/news.html">News</a>
@@ -264,50 +264,71 @@
   <main>
   <section class="hero">
     <div class="container">
-      <h1>Blog</h1>
-      <p>Practical writing on agentic AI systems, decision intelligence, and operating models grounded in my books and applied work.</p>
+      <h1>From Pilot to Production: AgentOps for Enterprise Teams</h1>
+      <p>Most agentic AI projects fail for a simple reason: teams optimize for intelligence, not operations.</p>
     </div>
   </section>
 
   <section class="content-wrap">
     <div class="container">
-      <div class="posts-grid">
-        <article class="post-card">
-  <span class="badge">From the books</span>
-  <div class="post-date">February 9, 2026</div>
-  <h2>Agentic AI vs. LLM Workflows: What Actually Changes in Production?</h2>
-  <p>Most teams say they are “doing agentic AI” when they are really doing prompt orchestration.</p>
-  <a class="post-link" href="/blog/agentic-ai-vs-llm-workflows.html">Read post →</a>
-</article>
-<article class="post-card">
-  <span class="badge">From the books</span>
-  <div class="post-date">February 9, 2026</div>
-  <h2>From Pilot to Production: AgentOps for Enterprise Teams</h2>
-  <p>Most agentic AI projects fail for a simple reason: teams optimize for intelligence, not operations.</p>
-  <a class="post-link" href="/blog/agentops-from-pilot-to-production.html">Read post →</a>
-</article>
-<article class="post-card">
-  <span class="badge">From the books</span>
-  <div class="post-date">October 20, 2025</div>
-  <h2>Multi-Agent Coordination Without Chaos: Protocols, Contracts, and Boundaries</h2>
-  <p>Multi-agent systems are easy to romanticize.</p>
-  <a class="post-link" href="/blog/multi-agent-coordination-without-chaos.html">Read post →</a>
-</article>
-<article class="post-card">
-  <span class="badge">From the books</span>
-  <div class="post-date">October 13, 2025</div>
-  <h2>Decision Frameworks for Agentic Systems: Optimization, Causality, and RL</h2>
-  <p>A lot of agentic AI systems fail for a non-obvious reason:</p>
-  <a class="post-link" href="/blog/decision-frameworks-for-agentic-systems-optimization-causality-and-rl.html">Read post →</a>
-</article>
-<article class="post-card">
-  <span class="badge">From the books</span>
-  <div class="post-date">October 6, 2025</div>
-  <h2>Human-in-the-Loop by Design: Governance for Autonomous Agents</h2>
-  <p>Most teams treat governance as a brake pedal for agentic AI.</p>
-  <a class="post-link" href="/blog/human-in-the-loop-by-design-governance-for-autonomous-agents.html">Read post →</a>
-</article>
-      </div>
+      <article class="article">
+        <div class="article-meta">February 9, 2026 · Book-derived post</div>
+        <p>Most agentic AI projects fail for a simple reason: teams optimize for intelligence, not operations.</p>
+<p>Pilot environments tolerate fragility. Production environments do not.</p>
+<p>If your goal is durable value, AgentOps must become a first-class capability—not an afterthought.</p>
+<h2>What is AgentOps?</h2>
+<p>AgentOps is the operating discipline for running AI agents reliably in production.</p>
+<p>It combines:</p>
+<ul>
+<li>model/runtime reliability,</li>
+<li>tool and workflow orchestration,</li>
+<li>governance and policy controls,</li>
+<li>and measurable business outcomes.</li>
+</ul>
+<p>Think of it as the equivalent of MLOps + SRE + workflow governance for autonomous decision systems.</p>
+<h2>The 7 controls every production agent needs</h2>
+<h3>1) Contracted actions</h3>
+<p>Agents should only execute through typed, versioned contracts. No free-form side effects.</p>
+<h3>2) Idempotency and retries</h3>
+<p>Every action path should be safe to retry and safe to interrupt.</p>
+<h3>3) Runtime policy gates</h3>
+<p>Execution rights must be policy-driven (who/what/when limits), not prompt-driven.</p>
+<h3>4) Structured memory</h3>
+<p>Persist decision context, chosen action, and outcome. Without this, you cannot learn.</p>
+<h3>5) Traceability</h3>
+<p>Each action needs a trace: intent → plan → tool call → result → final state.</p>
+<h3>6) Confidence + escalation rules</h3>
+<p>Low-confidence or high-risk states should route to humans automatically.</p>
+<h3>7) Cost and latency budgets</h3>
+<p>Define budget envelopes early. Agentic systems can drift into hidden spend quickly.</p>
+<h2>A practical rollout sequence</h2>
+<ol>
+<li><strong>Shadow mode:</strong> agent recommends, humans execute.</li>
+<li><strong>Bounded automation:</strong> auto-execute low-risk actions only.</li>
+<li><strong>Expanded autonomy:</strong> widen envelope with measured reliability gains.</li>
+</ol>
+<p>At every phase, measure:</p>
+<ul>
+<li>decision cycle time,</li>
+<li>quality/accuracy,</li>
+<li>exception rate,</li>
+<li>intervention frequency,</li>
+<li>and business KPI lift.</li>
+</ul>
+<h2>Common anti-patterns</h2>
+<ul>
+<li>Shipping with no rollback strategy</li>
+<li>Treating prompts as unversioned text assets</li>
+<li>Mixing policy and reasoning in one opaque prompt</li>
+<li>Measuring only model quality, not workflow outcomes</li>
+</ul>
+<h2>Final note</h2>
+<p>The question is no longer “Can the model reason?”</p>
+<p>The real question is:</p>
+<p><strong>Can your organization operate autonomous decision systems safely, repeatedly, and at scale?</strong></p>
+<p>That is AgentOps.</p>
+        <a class="back-link" href="/blog.html">← Back to blog</a>
+      </article>
     </div>
   </section>
 </main>

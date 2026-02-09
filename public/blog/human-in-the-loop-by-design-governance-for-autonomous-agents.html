@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Human-in-the-Loop by Design: Governance for Autonomous Agents | Dr. Fatih Nayebi</title>
+  <meta name="description" content="Most teams treat governance as a brake pedal for agentic AI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage-50: #f8faf8;
+      --sage-100: #f1f5f1;
+      --sage-200: #e3eae4;
+      --sage-300: #c9d6cc;
+      --sage-400: #a6baa9;
+      --sage-500: #87a18b;
+      --sage-600: #687f6c;
+      --sage-700: #546558;
+      --sage-800: #445248;
+      --sage-900: #3a453d;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Sans Pro', 'Lato', sans-serif;
+      color: var(--gray-700);
+      line-height: 1.65;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 68px;
+      gap: 1rem;
+    }
+
+    .logo {
+      color: var(--gray-900);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.15rem;
+    }
+
+    nav { display: none; gap: 1.2rem; }
+    nav a {
+      color: var(--gray-700);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .95rem;
+    }
+    nav a.active, nav a:hover { color: var(--sage-700); }
+
+    @media (min-width: 900px) { nav { display: flex; } }
+
+    main { flex: 1; }
+
+    .hero {
+      background: linear-gradient(130deg, var(--sage-50), #ffffff 60%);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 2.5rem 0;
+    }
+
+    .hero h1 {
+      color: var(--gray-900);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: .75rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--sage-700);
+      max-width: 760px;
+    }
+
+    .content-wrap { padding: 2.2rem 0 3rem; }
+
+    .posts-grid {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    }
+
+    .post-card {
+      border: 1px solid var(--gray-200);
+      border-radius: 14px;
+      background: #fff;
+      padding: 1.15rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+      box-shadow: 0 8px 22px rgba(31, 41, 55, 0.05);
+    }
+
+    .post-date {
+      color: var(--sage-700);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    .post-card h2 {
+      color: var(--gray-900);
+      font-size: 1.25rem;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .post-card p { margin: 0; }
+
+    .post-link {
+      display: inline-block;
+      margin-top: .35rem;
+      color: var(--sage-800);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .post-link:hover { text-decoration: underline; }
+
+    .article {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: 14px;
+      padding: 1.3rem 1.2rem;
+      box-shadow: 0 8px 22px rgba(31, 41, 55, 0.05);
+    }
+
+    @media (min-width: 900px) {
+      .article { padding: 1.8rem 2rem; }
+    }
+
+    .article-meta {
+      color: var(--sage-700);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .article h2 {
+      color: var(--gray-900);
+      margin: 1.35rem 0 .7rem;
+      font-size: 1.45rem;
+      line-height: 1.3;
+    }
+
+    .article h3 {
+      color: var(--gray-900);
+      margin: 1.15rem 0 .6rem;
+      font-size: 1.15rem;
+      line-height: 1.3;
+    }
+
+    .article p { margin: .75rem 0; }
+
+    .article ul, .article ol {
+      margin: .6rem 0 .8rem 1.1rem;
+      display: grid;
+      gap: .35rem;
+    }
+
+    .article blockquote {
+      border-left: 4px solid var(--sage-300);
+      background: var(--sage-50);
+      padding: .65rem .8rem;
+      margin: .9rem 0;
+      border-radius: 8px;
+    }
+
+    .article pre {
+      background: var(--gray-900);
+      color: #f3f4f6;
+      padding: .75rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: .8rem 0;
+      font-size: .9rem;
+    }
+
+    .article a { color: var(--sage-800); }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--sage-800);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    footer {
+      margin-top: auto;
+      background: var(--gray-900);
+      color: var(--gray-300);
+      padding: 1.6rem 0;
+      text-align: center;
+      font-size: .95rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--sage-100);
+      color: var(--sage-800);
+      border: 1px solid var(--sage-200);
+      border-radius: 999px;
+      padding: .22rem .58rem;
+      font-size: .78rem;
+      font-weight: 700;
+      margin-bottom: .6rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <a class="logo" href="/index.html">Dr. Fatih Nayebi</a>
+      <nav>
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/research.html">Research</a>
+        <a href="/blog.html" class="">Blog</a>
+        <a href="/publications.html">Publications</a>
+        <a href="/consulting.html">Consulting</a>
+        <a href="/news.html">News</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+  <section class="hero">
+    <div class="container">
+      <h1>Human-in-the-Loop by Design: Governance for Autonomous Agents</h1>
+      <p>Most teams treat governance as a brake pedal for agentic AI.</p>
+    </div>
+  </section>
+
+  <section class="content-wrap">
+    <div class="container">
+      <article class="article">
+        <div class="article-meta">October 6, 2025 · Book-derived post</div>
+        <p>Most teams treat governance as a brake pedal for agentic AI.</p>
+<p>That mindset is expensive.</p>
+<p>When governance is bolted on after deployment, autonomy stalls, trust drops, and every incident becomes a political event. But when governance is designed into the system from day one, teams ship faster because they know exactly what agents can do, when to escalate, and how to recover.</p>
+<p>If you are moving from copilots to autonomous decision workflows, this is not a compliance side quest. It is core system architecture.</p>
+<h2>The real problem: vague autonomy</h2>
+<p>Most “human-in-the-loop” implementations are fuzzy and reactive:</p>
+<ul>
+<li>random approval prompts,</li>
+<li>unclear ownership of overrides,</li>
+<li>no explicit risk tiers,</li>
+<li>no consistent audit trail.</li>
+</ul>
+<p>That creates the worst of both worlds: you get neither full automation nor reliable control.</p>
+<p>The fix is simple in principle and demanding in practice:</p>
+<p><strong>Define decision rights before you scale execution rights.</strong></p>
+<h2>A practical decision-rights model</h2>
+<p>Use four execution levels for every agentic workflow:</p>
+<ol>
+<li><strong>Recommend only</strong></li>
+</ol>
+<ul>
+<li>Agent proposes actions; humans execute.</li>
+<li>Best for new workflows and high uncertainty.</li>
+</ul>
+<ol>
+<li><strong>Bounded auto-execution</strong></li>
+</ol>
+<ul>
+<li>Agent executes only inside strict policy envelopes.</li>
+<li>Example: “can reallocate up to X% inventory within predefined store clusters.”</li>
+</ul>
+<ol>
+<li><strong>Conditional autonomy</strong></li>
+</ol>
+<ul>
+<li>Agent can execute broader actions when confidence + policy + context checks pass.</li>
+<li>Automatic escalation when any condition fails.</li>
+</ul>
+<ol>
+<li><strong>Autonomy with periodic oversight</strong></li>
+</ol>
+<ul>
+<li>Agent executes by default; humans audit outcomes and investigate exceptions.</li>
+<li>Only appropriate after repeated reliability evidence.</li>
+</ul>
+<p>Most teams should spend meaningful time in levels 1 and 2. Skipping straight to level 4 is how demos become incidents.</p>
+<h2>Governance architecture that actually works</h2>
+<p>You need five technical components.</p>
+<h3>1) Policy-as-code layer</h3>
+<p>Policies should be machine-checkable, versioned, and testable.</p>
+<p>Examples:</p>
+<ul>
+<li>action limits,</li>
+<li>restricted entities,</li>
+<li>required approvals for high-impact decisions,</li>
+<li>time-window rules,</li>
+<li>jurisdiction or customer-segment constraints.</li>
+</ul>
+<p>If policy lives in slide decks or scattered docs, the runtime is ungoverned.</p>
+<h3>2) Escalation envelopes</h3>
+<p>Predefine escalation triggers instead of leaving them implicit.</p>
+<p>Common triggers:</p>
+<ul>
+<li>confidence below threshold,</li>
+<li>policy conflict,</li>
+<li>out-of-distribution context,</li>
+<li>unusual cost/latency,</li>
+<li>repeated failed attempts.</li>
+</ul>
+<p>Escalation should include context packet + suggested options, not just “manual review needed.”</p>
+<h3>3) Explainability logs</h3>
+<p>For every consequential action, store:</p>
+<ul>
+<li>decision context,</li>
+<li>candidate options considered,</li>
+<li>selected action,</li>
+<li>policy checks passed/failed,</li>
+<li>expected vs. observed outcome.</li>
+</ul>
+<p>This is your post-incident backbone and your continuous-improvement fuel.</p>
+<h3>4) Override and rollback paths</h3>
+<p>Every autonomous action should have a clearly defined compensation strategy.</p>
+<p>If rollback is impossible, that action class should not be auto-executed yet.</p>
+<h3>5) Governance KPIs</h3>
+<p>Track governance quality as operational metrics, not governance theater artifacts:</p>
+<ul>
+<li>intervention rate,</li>
+<li>false-positive escalation rate,</li>
+<li>policy violation count,</li>
+<li>time-to-resolution for escalated decisions,</li>
+<li>business impact delta between autonomous and human-executed paths.</li>
+</ul>
+<h2>Anti-patterns to avoid</h2>
+<h3>Anti-pattern 1: “Approval everything”</h3>
+<p>If every action needs approval, you did not design autonomy—you designed a slower ticketing system.</p>
+<h3>Anti-pattern 2: policy in prompts only</h3>
+<p>Prompt text is not a robust control plane. Policy belongs in enforceable runtime checks.</p>
+<h3>Anti-pattern 3: unowned override decisions</h3>
+<p>If nobody owns override rights by workflow and risk level, incident response will be chaos.</p>
+<h3>Anti-pattern 4: no closed-loop learning</h3>
+<p>Escalations without root-cause analysis become recurring tax. Governance should reduce manual load over time, not freeze it.</p>
+<h2>A 6-week rollout blueprint</h2>
+<h3>Weeks 1–2: Define boundaries</h3>
+<ul>
+<li>map decision classes,</li>
+<li>assign risk tiers,</li>
+<li>set initial execution levels,</li>
+<li>define explicit escalation triggers.</li>
+</ul>
+<h3>Weeks 3–4: Instrument and test</h3>
+<ul>
+<li>deploy policy-as-code checks,</li>
+<li>implement explainability logs,</li>
+<li>run shadow mode and adversarial scenario tests.</li>
+</ul>
+<h3>Weeks 5–6: Enable bounded autonomy</h3>
+<ul>
+<li>turn on low-risk auto-execution,</li>
+<li>monitor governance KPIs daily,</li>
+<li>review exceptions and tighten policies weekly.</li>
+</ul>
+<p>The goal is not “max automation fast.”</p>
+<p>The goal is reliable autonomy with compounding trust.</p>
+<h2>What to do this week</h2>
+<p>If your team is currently piloting agentic workflows, do these five things now:</p>
+<ol>
+<li>Pick one workflow and define exactly which actions are recommendation-only vs. executable.</li>
+<li>Write three non-negotiable policy checks as code.</li>
+<li>Define two escalation triggers and one escalation owner.</li>
+<li>Add a minimal explainability log schema for every action.</li>
+<li>Run one tabletop incident: “What if this executes the wrong action at scale?”</li>
+</ol>
+<p>If you cannot answer that tabletop cleanly, you are not ready for broader autonomy.</p>
+<h2>Final thought</h2>
+<p>Human-in-the-loop is not a UI feature.</p>
+<p>It is the decision-rights operating model for autonomous systems.</p>
+<p>Teams that get this right move faster precisely because they are safer. Teams that ignore it eventually slow down under risk and rework.</p>
+<p>Governance done right is not friction. It is leverage.</p>
+<p>---</p>
+<h3>Optional CTA variants</h3>
+<ul>
+<li>How is your team defining decision rights between recommendation and execution today?</li>
+<li>Which escalation trigger is generating the most manual load in your current pilot?</li>
+<li>If you are building agentic decision workflows and want to compare governance patterns, let’s talk.</li>
+</ul>
+        <a class="back-link" href="/blog.html">← Back to blog</a>
+      </article>
+    </div>
+  </section>
+</main>
+
+  <footer>
+    <div class="container">© 2026 Dr. Fatih Nayebi. All rights reserved.</div>
+  </footer>
+</body>
+</html>

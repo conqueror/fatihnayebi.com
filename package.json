@@ -10,7 +10,7 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "npx -y serve public/",
-    "build": "echo 'Using pre-built static files in the public directory'",
+    "build": "node scripts/generate-blog-static.js && echo 'Using pre-built static files in the public directory'",
     "serve": "npx -y serve public/",
     "clean": "gatsby clean",
     "preinstall": "npx npm-force-resolutions"

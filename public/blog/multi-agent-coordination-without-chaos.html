@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Agent Coordination Without Chaos: Protocols, Contracts, and Boundaries | Dr. Fatih Nayebi</title>
+  <meta name="description" content="Multi-agent systems are easy to romanticize." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage-50: #f8faf8;
+      --sage-100: #f1f5f1;
+      --sage-200: #e3eae4;
+      --sage-300: #c9d6cc;
+      --sage-400: #a6baa9;
+      --sage-500: #87a18b;
+      --sage-600: #687f6c;
+      --sage-700: #546558;
+      --sage-800: #445248;
+      --sage-900: #3a453d;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Sans Pro', 'Lato', sans-serif;
+      color: var(--gray-700);
+      line-height: 1.65;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 68px;
+      gap: 1rem;
+    }
+
+    .logo {
+      color: var(--gray-900);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.15rem;
+    }
+
+    nav { display: none; gap: 1.2rem; }
+    nav a {
+      color: var(--gray-700);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .95rem;
+    }
+    nav a.active, nav a:hover { color: var(--sage-700); }
+
+    @media (min-width: 900px) { nav { display: flex; } }
+
+    main { flex: 1; }
+
+    .hero {
+      background: linear-gradient(130deg, var(--sage-50), #ffffff 60%);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 2.5rem 0;
+    }
+
+    .hero h1 {
+      color: var(--gray-900);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: .75rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--sage-700);
+      max-width: 760px;
+    }
+
+    .content-wrap { padding: 2.2rem 0 3rem; }
+
+    .posts-grid {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    }
+
+    .post-card {
+      border: 1px solid var(--gray-200);
+      border-radius: 14px;
+      background: #fff;
+      padding: 1.15rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+      box-shadow: 0 8px 22px rgba(31, 41, 55, 0.05);
+    }
+
+    .post-date {
+      color: var(--sage-700);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    .post-card h2 {
+      color: var(--gray-900);
+      font-size: 1.25rem;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .post-card p { margin: 0; }
+
+    .post-link {
+      display: inline-block;
+      margin-top: .35rem;
+      color: var(--sage-800);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .post-link:hover { text-decoration: underline; }
+
+    .article {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: 14px;
+      padding: 1.3rem 1.2rem;
+      box-shadow: 0 8px 22px rgba(31, 41, 55, 0.05);
+    }
+
+    @media (min-width: 900px) {
+      .article { padding: 1.8rem 2rem; }
+    }
+
+    .article-meta {
+      color: var(--sage-700);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .article h2 {
+      color: var(--gray-900);
+      margin: 1.35rem 0 .7rem;
+      font-size: 1.45rem;
+      line-height: 1.3;
+    }
+
+    .article h3 {
+      color: var(--gray-900);
+      margin: 1.15rem 0 .6rem;
+      font-size: 1.15rem;
+      line-height: 1.3;
+    }
+
+    .article p { margin: .75rem 0; }
+
+    .article ul, .article ol {
+      margin: .6rem 0 .8rem 1.1rem;
+      display: grid;
+      gap: .35rem;
+    }
+
+    .article blockquote {
+      border-left: 4px solid var(--sage-300);
+      background: var(--sage-50);
+      padding: .65rem .8rem;
+      margin: .9rem 0;
+      border-radius: 8px;
+    }
+
+    .article pre {
+      background: var(--gray-900);
+      color: #f3f4f6;
+      padding: .75rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: .8rem 0;
+      font-size: .9rem;
+    }
+
+    .article a { color: var(--sage-800); }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--sage-800);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    footer {
+      margin-top: auto;
+      background: var(--gray-900);
+      color: var(--gray-300);
+      padding: 1.6rem 0;
+      text-align: center;
+      font-size: .95rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--sage-100);
+      color: var(--sage-800);
+      border: 1px solid var(--sage-200);
+      border-radius: 999px;
+      padding: .22rem .58rem;
+      font-size: .78rem;
+      font-weight: 700;
+      margin-bottom: .6rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <a class="logo" href="/index.html">Dr. Fatih Nayebi</a>
+      <nav>
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/research.html">Research</a>
+        <a href="/blog.html" class="">Blog</a>
+        <a href="/publications.html">Publications</a>
+        <a href="/consulting.html">Consulting</a>
+        <a href="/news.html">News</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+  <section class="hero">
+    <div class="container">
+      <h1>Multi-Agent Coordination Without Chaos: Protocols, Contracts, and Boundaries</h1>
+      <p>Multi-agent systems are easy to romanticize.</p>
+    </div>
+  </section>
+
+  <section class="content-wrap">
+    <div class="container">
+      <article class="article">
+        <div class="article-meta">October 20, 2025 · Book-derived post</div>
+        <p>Multi-agent systems are easy to romanticize.</p>
+<p>In slides, they look like a clean division of labor: planner agent, analyst agent, executor agent, evaluator agent.</p>
+<p>In production, they often become distributed confusion:</p>
+<ul>
+<li>duplicated work,</li>
+<li>conflicting actions,</li>
+<li>hidden latency,</li>
+<li>unclear ownership,</li>
+<li>and incident debugging across agent spaghetti.</li>
+</ul>
+<p>If your team is moving toward multi-agent architectures, the winning strategy is simple:</p>
+<p><strong>Treat agent collaboration as a systems-engineering problem, not a prompt choreography exercise.</strong></p>
+<h2>Why multi-agent fails in practice</h2>
+<p>Most failures come from three design mistakes.</p>
+<h3>1) No explicit interaction protocol</h3>
+<p>Agents hand off tasks in ad hoc text blobs. Context is incomplete, assumptions drift, and downstream errors compound.</p>
+<h3>2) No action contracts</h3>
+<p>Agents can call tools loosely, with inconsistent schemas and side effects. Retries and reconciliation break.</p>
+<h3>3) No boundaries</h3>
+<p>Agents overlap responsibilities, spend budgets unpredictably, and escalate by panic instead of policy.</p>
+<p>Adding more agents on top of this does not increase intelligence.</p>
+<p>It increases entropy.</p>
+<h2>A minimal coordination architecture</h2>
+<p>You need four layers.</p>
+<h3>Layer 1: Orchestrator (control plane)</h3>
+<p>The orchestrator owns:</p>
+<ul>
+<li>task decomposition,</li>
+<li>routing,</li>
+<li>dependency tracking,</li>
+<li>timeout/budget enforcement,</li>
+<li>final arbitration.</li>
+</ul>
+<p>Do not let specialist agents self-assign critical execution rights.</p>
+<h3>Layer 2: Specialist agents (capability plane)</h3>
+<p>Each specialist should have a narrow mission:</p>
+<ul>
+<li>forecasting,</li>
+<li>optimization,</li>
+<li>policy checking,</li>
+<li>execution,</li>
+<li>post-action evaluation.</li>
+</ul>
+<p>If an agent role cannot be described in one sentence, it is too broad.</p>
+<h3>Layer 3: Contracts (interaction plane)</h3>
+<p>All handoffs and tool calls should use typed contracts:</p>
+<ul>
+<li>required fields,</li>
+<li>optional fields,</li>
+<li>confidence metadata,</li>
+<li>trace IDs,</li>
+<li>expected output schema.</li>
+</ul>
+<p>Natural language is great for flexibility. Contracts are mandatory for reliability.</p>
+<h3>Layer 4: Governance boundaries (risk plane)</h3>
+<p>Define boundaries by default:</p>
+<ul>
+<li>action rights,</li>
+<li>data access rights,</li>
+<li>cost/latency budgets,</li>
+<li>escalation triggers.</li>
+</ul>
+<p>Boundaries turn multi-agent systems from “clever demos” into operable infrastructure.</p>
+<h2>Protocols that prevent chaos</h2>
+<h3>Protocol 1: Task ticket standard</h3>
+<p>Every subtask should include:</p>
+<ul>
+<li>objective,</li>
+<li>constraints,</li>
+<li>success criteria,</li>
+<li>deadline,</li>
+<li>fallback rule.</li>
+</ul>
+<p>No ticket, no delegation.</p>
+<h3>Protocol 2: Handoff acceptance</h3>
+<p>Receiving agent must either:</p>
+<ul>
+<li>accept with confidence + ETA,</li>
+<li>reject with explicit reason,</li>
+<li>request missing context.</li>
+</ul>
+<p>Silent handoffs are failure incubators.</p>
+<h3>Protocol 3: Conflict resolution</h3>
+<p>When two agents disagree on a high-impact action:</p>
+<ul>
+<li>invoke arbitration policy,</li>
+<li>compare evidence and confidence,</li>
+<li>choose one of: conservative fallback, human escalation, or bounded A/B.</li>
+</ul>
+<p>Never “average” conflicting decisions blindly.</p>
+<h3>Protocol 4: Idempotent execution envelope</h3>
+<p>Any executable action should support retries without duplicated side effects.</p>
+<p>If idempotency is impossible, force approval or redesign the action path.</p>
+<h2>Boundary model for enterprise teams</h2>
+<p>A useful boundary matrix has four dimensions:</p>
+<ol>
+<li><strong>Capability boundary</strong></li>
+</ol>
+<ul>
+<li>What this agent is allowed to decide.</li>
+</ul>
+<ol>
+<li><strong>Data boundary</strong></li>
+</ol>
+<ul>
+<li>What data this agent can read/write.</li>
+</ul>
+<ol>
+<li><strong>Execution boundary</strong></li>
+</ol>
+<ul>
+<li>What actions this agent can trigger directly.</li>
+</ul>
+<ol>
+<li><strong>Economic boundary</strong></li>
+</ol>
+<ul>
+<li>Budget and latency envelope per decision cycle.</li>
+</ul>
+<p>Without an economic boundary, multi-agent systems can look smart while quietly burning cost and time.</p>
+<h2>What to measure (beyond accuracy)</h2>
+<p>Multi-agent quality is not a single metric.</p>
+<p>Track these operational indicators:</p>
+<ul>
+<li>handoff success rate,</li>
+<li>arbitration frequency,</li>
+<li>duplicate-work rate,</li>
+<li>end-to-end cycle time,</li>
+<li>intervention rate,</li>
+<li>policy violation count,</li>
+<li>cost per completed decision.</li>
+</ul>
+<p>If handoff failures and arbitration spikes rise together, your protocol design is weak.</p>
+<h2>Rollout sequence that works</h2>
+<h3>Phase 1: Two-agent pattern</h3>
+<p>Start with orchestrator + one specialist for a single workflow. Validate contracts and handoffs.</p>
+<h3>Phase 2: Add one specialist at a time</h3>
+<p>Introduce only one new role per iteration. Measure operational impact before expanding.</p>
+<h3>Phase 3: Introduce arbitration and fallback rigor</h3>
+<p>Before scaling action scope, harden disagreement handling and recovery paths.</p>
+<h3>Phase 4: Scale autonomy envelope</h3>
+<p>Expand only when policy violations are low and explainability quality is high.</p>
+<p>This sequence is boring.</p>
+<p>Boring is good in production.</p>
+<h2>What to do this week</h2>
+<ol>
+<li>Pick one current workflow where multiple agents already participate.</li>
+<li>Write explicit contracts for every handoff in that workflow.</li>
+<li>Add one conflict-resolution policy for high-impact decisions.</li>
+<li>Enforce one budget boundary (time or cost) at orchestrator level.</li>
+<li>Review one incident and classify it as protocol failure, contract failure, or boundary failure.</li>
+</ol>
+<p>That classification alone will show you where your coordination debt sits.</p>
+<h2>Final thought</h2>
+<p>Multi-agent systems do not fail because agents are weak.</p>
+<p>They fail because coordination is underdesigned.</p>
+<p>Protocols, contracts, and boundaries are not bureaucracy—they are the mechanism that converts distributed intelligence into reliable outcomes.</p>
+<p>If you want multi-agent advantage, design coordination as seriously as you design models.</p>
+<p>---</p>
+<h3>Optional CTA variants</h3>
+<ul>
+<li>Which coordination failure is hurting your team most right now: handoffs, conflicts, or boundary breaches?</li>
+<li>Have you defined an explicit arbitration policy for conflicting agent recommendations?</li>
+<li>If you are scaling multi-agent decision workflows, I’d be glad to compare architecture patterns.</li>
+</ul>
+        <a class="back-link" href="/blog.html">← Back to blog</a>
+      </article>
+    </div>
+  </section>
+</main>
+
+  <footer>
+    <div class="container">© 2026 Dr. Fatih Nayebi. All rights reserved.</div>
+  </footer>
+</body>
+</html>

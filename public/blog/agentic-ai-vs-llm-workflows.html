@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agentic AI vs. LLM Workflows: What Actually Changes in Production? | Dr. Fatih Nayebi</title>
+  <meta name="description" content="Most teams say they are “doing agentic AI” when they are really doing prompt orchestration." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage-50: #f8faf8;
+      --sage-100: #f1f5f1;
+      --sage-200: #e3eae4;
+      --sage-300: #c9d6cc;
+      --sage-400: #a6baa9;
+      --sage-500: #87a18b;
+      --sage-600: #687f6c;
+      --sage-700: #546558;
+      --sage-800: #445248;
+      --sage-900: #3a453d;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Sans Pro', 'Lato', sans-serif;
+      color: var(--gray-700);
+      line-height: 1.65;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 68px;
+      gap: 1rem;
+    }
+
+    .logo {
+      color: var(--gray-900);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.15rem;
+    }
+
+    nav { display: none; gap: 1.2rem; }
+    nav a {
+      color: var(--gray-700);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .95rem;
+    }
+    nav a.active, nav a:hover { color: var(--sage-700); }
+
+    @media (min-width: 900px) { nav { display: flex; } }
+
+    main { flex: 1; }
+
+    .hero {
+      background: linear-gradient(130deg, var(--sage-50), #ffffff 60%);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 2.5rem 0;
+    }
+
+    .hero h1 {
+      color: var(--gray-900);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: .75rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--sage-700);
+      max-width: 760px;
+    }
+
+    .content-wrap { padding: 2.2rem 0 3rem; }
+
+    .posts-grid {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    }
+
+    .post-card {
+      border: 1px solid var(--gray-200);
+      border-radius: 14px;
+      background: #fff;
+      padding: 1.15rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+      box-shadow: 0 8px 22px rgba(31, 41, 55, 0.05);
+    }
+
+    .post-date {
+      color: var(--sage-700);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    .post-card h2 {
+      color: var(--gray-900);
+      font-size: 1.25rem;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .post-card p { margin: 0; }
+
+    .post-link {
+      display: inline-block;
+      margin-top: .35rem;
+      color: var(--sage-800);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .post-link:hover { text-decoration: underline; }
+
+    .article {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: 14px;
+      padding: 1.3rem 1.2rem;
+      box-shadow: 0 8px 22px rgba(31, 41, 55, 0.05);
+    }
+
+    @media (min-width: 900px) {
+      .article { padding: 1.8rem 2rem; }
+    }
+
+    .article-meta {
+      color: var(--sage-700);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .article h2 {
+      color: var(--gray-900);
+      margin: 1.35rem 0 .7rem;
+      font-size: 1.45rem;
+      line-height: 1.3;
+    }
+
+    .article h3 {
+      color: var(--gray-900);
+      margin: 1.15rem 0 .6rem;
+      font-size: 1.15rem;
+      line-height: 1.3;
+    }
+
+    .article p { margin: .75rem 0; }
+
+    .article ul, .article ol {
+      margin: .6rem 0 .8rem 1.1rem;
+      display: grid;
+      gap: .35rem;
+    }
+
+    .article blockquote {
+      border-left: 4px solid var(--sage-300);
+      background: var(--sage-50);
+      padding: .65rem .8rem;
+      margin: .9rem 0;
+      border-radius: 8px;
+    }
+
+    .article pre {
+      background: var(--gray-900);
+      color: #f3f4f6;
+      padding: .75rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: .8rem 0;
+      font-size: .9rem;
+    }
+
+    .article a { color: var(--sage-800); }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--sage-800);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    footer {
+      margin-top: auto;
+      background: var(--gray-900);
+      color: var(--gray-300);
+      padding: 1.6rem 0;
+      text-align: center;
+      font-size: .95rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--sage-100);
+      color: var(--sage-800);
+      border: 1px solid var(--sage-200);
+      border-radius: 999px;
+      padding: .22rem .58rem;
+      font-size: .78rem;
+      font-weight: 700;
+      margin-bottom: .6rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <a class="logo" href="/index.html">Dr. Fatih Nayebi</a>
+      <nav>
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/research.html">Research</a>
+        <a href="/blog.html" class="">Blog</a>
+        <a href="/publications.html">Publications</a>
+        <a href="/consulting.html">Consulting</a>
+        <a href="/news.html">News</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+  <section class="hero">
+    <div class="container">
+      <h1>Agentic AI vs. LLM Workflows: What Actually Changes in Production?</h1>
+      <p>Most teams say they are “doing agentic AI” when they are really doing prompt orchestration.</p>
+    </div>
+  </section>
+
+  <section class="content-wrap">
+    <div class="container">
+      <article class="article">
+        <div class="article-meta">February 9, 2026 · Book-derived post</div>
+        <p>Most teams say they are “doing agentic AI” when they are really doing prompt orchestration.</p>
+<p>That’s not a criticism. It’s usually the right starting point.</p>
+<p>But it is not the same operating model.</p>
+<p>If you’re a data, product, or engineering leader, the key question is not whether an LLM can generate good text. The key question is whether your system can <strong>reliably perceive, decide, act, and learn</strong> inside a real business workflow.</p>
+<p>That is the line between an LLM workflow and an agentic system.</p>
+<h2>The shortest distinction</h2>
+<ul>
+<li><strong>LLM workflow:</strong> model-in-the-middle automation</li>
+<li><strong>Agentic AI system:</strong> goal-driven software system with bounded autonomy and closed-loop execution</li>
+</ul>
+<p>In practice, LLM workflows are often stateless or lightly stateful. They can summarize, classify, draft, route, and answer.</p>
+<p>Agentic systems must do more:</p>
+<ol>
+<li>Maintain state across steps and time</li>
+<li>Choose actions under constraints</li>
+<li>Execute through tools/systems of record</li>
+<li>Observe outcomes and adapt behavior</li>
+<li>Respect governance boundaries without constant manual intervention</li>
+</ol>
+<h2>Why this distinction matters</h2>
+<p>When teams collapse these two ideas, three failure modes appear quickly:</p>
+<h3>1) Impressive demos, weak operations</h3>
+<p>The assistant looks smart in a controlled path. In production, it fails on edge cases because no durable state or fallback policy exists.</p>
+<h3>2) Hidden governance debt</h3>
+<p>Action-taking systems are deployed without explicit decision rights. Nobody can answer who approved what, under which policy, with what rollback path.</p>
+<h3>3) Cost without compounding learning</h3>
+<p>The system executes requests, but outcomes are not fed back into structured memory. You pay for inference repeatedly, but capability does not improve.</p>
+<h2>A practical architecture lens</h2>
+<p>A useful model is:</p>
+<p><strong>Perceive → Reason → Act → Learn</strong></p>
+<h3>Perceive</h3>
+<p>Inputs from events, APIs, documents, transactions, user intent, and environment state.</p>
+<h3>Reason</h3>
+<p>Planning and selection using LLM reasoning + deterministic policy checks + optimization where needed.</p>
+<h3>Act</h3>
+<p>Execution through controlled tools, APIs, and workflows with explicit authorization boundaries.</p>
+<h3>Learn</h3>
+<p>Outcome logging, replay, error taxonomy, and policy/model updates.</p>
+<p>If one of these four stages is missing, you likely have a workflow automation layer—not a robust agentic system.</p>
+<h2>What changes for operating teams</h2>
+<p>Moving from LLM workflows to agentic systems changes responsibilities across the org.</p>
+<h3>Product</h3>
+<ul>
+<li>Define goals and constraints as first-class artifacts</li>
+<li>Specify escalation thresholds and handoff points</li>
+<li>Design UX for human override, not just happy-path chat</li>
+</ul>
+<h3>Data/ML</h3>
+<ul>
+<li>Treat memory and context quality as core product features</li>
+<li>Add evaluation loops around decisions, not only responses</li>
+<li>Build scenario tests for uncertainty and contradictory signals</li>
+</ul>
+<h3>Engineering</h3>
+<ul>
+<li>Implement contracts for tools/actions</li>
+<li>Add idempotency, retries, and compensating transactions</li>
+<li>Instrument every action path with traceability</li>
+</ul>
+<h3>Risk/Governance</h3>
+<ul>
+<li>Encode policy into runtime controls</li>
+<li>Separate “recommendation rights” from “execution rights”</li>
+<li>Require auditability by design, not by post-hoc reporting</li>
+</ul>
+<h2>The minimum maturity stack</h2>
+<p>If you want to deploy safely and quickly, start with this stack:</p>
+<ol>
+<li><strong>Task boundary:</strong> narrow scope with measurable business outcome</li>
+<li><strong>Action policy:</strong> what can be auto-executed vs. escalated</li>
+<li><strong>Tool contract:</strong> strict input/output schema and timeouts</li>
+<li><strong>State model:</strong> durable memory for decisions and outcomes</li>
+<li><strong>Observability:</strong> traces, cost metrics, and failure taxonomy</li>
+<li><strong>Fallback design:</strong> deterministic recovery path when confidence is low</li>
+</ol>
+<p>This is enough to ship real value without pretending your first release is autonomous everywhere.</p>
+<h2>Where to start this quarter</h2>
+<p>Pick one workflow where <strong>latency to decision</strong> causes measurable business pain.</p>
+<p>Examples:</p>
+<ul>
+<li>Demand response adjustments</li>
+<li>Exception triage in operations</li>
+<li>Assortment or pricing recommendation workflows</li>
+<li>Service-level incident routing</li>
+</ul>
+<p>Then apply a simple rollout:</p>
+<ul>
+<li><strong>Phase 1:</strong> co-pilot recommendations</li>
+<li><strong>Phase 2:</strong> bounded auto-execution (low-risk envelope)</li>
+<li><strong>Phase 3:</strong> broader autonomy with human-on-the-loop oversight</li>
+</ul>
+<p>This progression gives you trust, evidence, and organizational alignment.</p>
+<h2>Final thought</h2>
+<p>LLM workflows are excellent accelerators.</p>
+<p>Agentic systems are operating systems for decisions.</p>
+<p>Both matter—but they should not be confused.</p>
+<p>The winners will be teams that treat autonomy as an engineering and governance discipline, not just a prompt design exercise.</p>
+<p>---</p>
+<h3>Optional CTA variants</h3>
+<ul>
+<li>“If you’re piloting agentic systems, what is your current boundary between recommendation and execution?”</li>
+<li>“What failure mode are you seeing most often as you move from copilots to autonomous actions?”</li>
+</ul>
+        <a class="back-link" href="/blog.html">← Back to blog</a>
+      </article>
+    </div>
+  </section>
+</main>
+
+  <footer>
+    <div class="container">© 2026 Dr. Fatih Nayebi. All rights reserved.</div>
+  </footer>
+</body>
+</html>
