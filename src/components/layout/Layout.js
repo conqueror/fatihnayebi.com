@@ -10,7 +10,7 @@ const Layout = ({ children, title, description }) => {
       <Helmet>
         <html lang="en" />
         <title>{title ? `${title} | Dr. Fatih Nayebi` : "Dr. Fatih Nayebi | Data & AI Leader"}</title>
-        <meta name="description" content={description || "Dr. Fatih Nayebi is a Data & AI leader, Founder & CEO of OODARIS AI, VP of Data & AI at ALDO Group, and Assistant Professor at McGill University"} />
+        <meta name="description" content={description || "Dr. Fatih Nayebi is a Data & AI leader, Founder & CEO of OODARIS AI, Assistant Professor at McGill University, and former VP of Data & AI at ALDO Group"} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />

@@ -9,13 +9,13 @@ const IndexPage = () => {
   return (
     <Layout 
       title="Home"
-      description="Dr. Fatih Nayebi is a Data & AI leader, Founder & CEO of OODARIS AI, VP of Data & AI at ALDO Group, and Assistant Professor at McGill University"
+      description="Dr. Fatih Nayebi is a Data & AI leader, Founder & CEO of OODARIS AI, Assistant Professor at McGill University, and former VP of Data & AI at ALDO Group"
     >
       {/* Hero Section */}
       <Hero
         title="Dr. Fatih Nayebi"
         subtitle="Data & AI Leader"
-        description="Transforming the future of business and technology through practical enterprise AI leadership. Founder & CEO of OODARIS AI, VP of Data & AI at ALDO Group, and Assistant Professor at McGill University."
+        description="Transforming the future of business and technology through practical enterprise AI leadership. Founder & CEO of OODARIS AI, Assistant Professor at McGill University, and former VP of Data & AI at ALDO Group."
         primaryButtonText="View Research"
         primaryButtonLink="/research"
         secondaryButtonText="Contact Me"
@@ -50,7 +50,7 @@ const IndexPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card
             title="Enterprise AI Leadership"
-            content="Leading data science and AI teams to deliver impactful solutions across retail, finance, and technology sectors. Current VP of Data & AI at ALDO Group."
+            content="Led data science and AI teams to deliver impactful solutions across retail, finance, and technology sectors as former VP of Data & AI at ALDO Group."
             image="/images/enterprise-placeholder.jpg"
             imageAlt="Enterprise AI Leadership"
           />
