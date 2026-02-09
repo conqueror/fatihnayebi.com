@@ -106,7 +106,7 @@ That is AgentOps.
 
 ### Gradient Divergence (long-form)
 - **Title:** Human-in-the-Loop by Design: Governance for Autonomous Agents
-- **Draft:** `2026-02-09-human-in-the-loop-by-design-governance-for-autonomous-agents.md`
+- **Draft:** `2025-10-06-human-in-the-loop-by-design-governance-for-autonomous-agents.md`
 - **Core angle:** governance as an accelerator, not a blocker.
 
 ### LinkedIn Post #1
@@ -143,7 +143,7 @@ If governance is built-in from day 1, autonomy compounds.
 
 ### Gradient Divergence (long-form)
 - **Title:** Decision Frameworks for Agentic Systems: Optimization, Causality, and RL
-- **Draft:** `2026-02-09-decision-frameworks-for-agentic-systems-optimization-causality-and-rl.md`
+- **Draft:** `2025-10-13-decision-frameworks-for-agentic-systems-optimization-causality-and-rl.md`
 - **Core angle:** picking the right decision tool for the job.
 
 ### LinkedIn Post #1

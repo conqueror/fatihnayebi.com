@@ -10,13 +10,13 @@
    - Status: drafted (`2026-02-09-agentops-from-pilot-to-production.md`)
 3. **Human-in-the-Loop by Design: Governance for Autonomous Agents**
    - Source: governance and responsible autonomy
-   - Status: drafted (`2026-02-09-human-in-the-loop-by-design-governance-for-autonomous-agents.md`)
+   - Status: drafted (`2025-10-06-human-in-the-loop-by-design-governance-for-autonomous-agents.md`)
 4. **Decision Frameworks for Agentic Systems: Optimization, Causality, and RL**
    - Source: decision frameworks I/II/III
-   - Status: drafted (`2026-02-09-decision-frameworks-for-agentic-systems-optimization-causality-and-rl.md`)
+   - Status: drafted (`2025-10-13-decision-frameworks-for-agentic-systems-optimization-causality-and-rl.md`)
 5. **Multi-Agent Coordination Without Chaos: Protocols, Contracts, and Boundaries**
    - Source: multi-agent coordination and interoperability
-   - Status: drafted (`2026-02-09-multi-agent-coordination-without-chaos.md`)
+   - Status: drafted (`2025-10-20-multi-agent-coordination-without-chaos.md`)
 6. **End-to-End Agent Integration: Data Plane, Control Plane, and Execution Layer**
    - Source: end-to-end integration chapter
 
