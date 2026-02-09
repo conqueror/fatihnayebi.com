@@ -30,6 +30,11 @@ This folder is the drafting pipeline for frequent thought-leadership posts.
 
 See `TOPIC_QUEUE.md`.
 
+## Planning assets
+
+- `EDITORIAL_CALENDAR_12_WEEKS.md` — 12-week multi-channel strategy
+- `WEEKS_01_04_CONTENT_PACK.md` — ready-to-ship content for first 4 weeks
+
 ## Publishing checklist
 
 - [ ] Title tuned for senior operators + builders
